@@ -1,13 +1,63 @@
-import React from "react";
-import firebase from "firebase";
+import React, {Component} from "react";
+// import firebase from "firebase";
+import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import keys from "../../keys";
 
-const Home = () =>
-  <div>
+
+class Home extends Component {
+  state = {
+    showingInfoWindow: false,
+    activeMarker: {},
+    selectedPlace: {},
+  };
+ 
+  onMarkerClick = (props, marker, e) =>
+    this.setState({
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true
+    });
+ 
+  onMapClicked = (props) => {
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null
+      })
+    }
+  };
+
+
+  // componentDidMount = () => {
+    
+  // }
+
+
+  render (){
+    return (
+      <div>
     <h1>Home</h1>
     <div>Signed In! </div>
-      {/* <button className="btn" onClick={()=>firebase.auth().signOut()}> Sign out!</button> */}
-        <h1>Welcome {firebase.auth().currentUser.displayName} </h1>
-        <img alt="user" src={firebase.auth().currentUser.photoURL} />
-  </div>;
+          <Map google={this.props.google}
+          onClick={this.onMapClicked}>
+        <Marker onClick={this.onMarkerClick}
+                name={'Current location'} />
+ 
+        <InfoWindow
+          marker={this.state.activeMarker}
+          visible={this.state.showingInfoWindow}>
+            <div>
+              <h1>{this.state.selectedPlace.name}</h1>
+            </div>
+        </InfoWindow>
+      </Map>
+  </div>
+    )
+  }
+}
+  
 
-export default Home;
+// export default Home;
+export default GoogleApiWrapper({
+  apiKey: keys.GOOGLE_MAPS.api_key
+})(Home)

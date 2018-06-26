@@ -6,15 +6,19 @@ import Result from "./Result";
 import Navbar from "../Navbar";
 import firebase from "firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+import keys from "../../keys";
+
+// console.log("Hello",FB.api);
 
 firebase.initializeApp({
-  apiKey: "AIzaSyDYTXe8VuIi0gdZVfI1V1kHpJ2N9Xj23-I",
-  authDomain: "endgame-1529521978924.firebaseapp.com"
+  apiKey: keys.FB.api,
+  authDomain: keys.FB.auth
+//   apiKey: "AIzaSyDYTXe8VuIi0gdZVfI1V1kHpJ2N9Xj23-I",
+//  authDomain: "endgame-1529521978924.firebaseapp.com"
 })
 
 class Login extends Component {
-  state = {isSignedIn: false,
-  redirect: false}
+  state = {isSignedIn: false}
   uiConfig = {
     signInFlow: "popup",
     signInOptions: [
@@ -41,12 +45,12 @@ class Login extends Component {
     return (
       <div className="App">
       {this.state.isSignedIn ? (
-        <Router>
+      <Router>
         <div>
           <Navbar />
-          <Route exact path="/" component={Home} />
+          <Route  exact path="/" component={Home} />
           <Route exact path="/invite" component={Invite} />
-          <Route path="/result" component={Result} />
+          <Route exact path="/result" component={Result} />
         </div>
       </Router>
         // <div>
