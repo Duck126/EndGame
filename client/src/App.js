@@ -10,7 +10,7 @@ import firebase from "firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
 // dotenv.config();
-console.log(keys);
+console.log(fb);
 
 
 

@@ -2,8 +2,6 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
 import { Link } from "react-router-dom";
-import Button from '@material-ui/core/Button';
-import Avatar from '@material-ui/core/Avatar';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import firebase from "firebase";
 import { height } from 'window-size';
@@ -55,14 +53,6 @@ function User(props){
   )
 }
 
-function User(props){
-  return (
-    <div >
-      <Avatar alt="User" src={firebase.auth().currentUser.photoURL} style={styles} />
-    </div>
-  )
-}
-
 function Logout(props){
   return (
     <SvgIcon {...props}>
@@ -72,15 +62,14 @@ function Logout(props){
   )
 }
 
-
 function Navbar(props){
   return (
     <div  >
 
-       <Button variant="fab" style={{ margin:15, alignContent:'center' }} aria-label="edit" className="active nav-link">
-        
+      <Button variant="fab" style={{ margin:15, alignContent:'center' }} aria-label="edit" className={window.location.pathname === "/" ? "active nav-link" : "nav-link" }>
+        <Link to="/">
           <User style={iconsStyle} src={firebase.auth().currentUser.photoURL}/>
-        
+        </Link>
       </Button>
 
        <Button variant="fab" style={{ margin:15, alignContent:'center' }} aria-label="edit" className={window.location.pathname === "/" ? "active nav-link" : "nav-link" }>
@@ -101,12 +90,11 @@ function Navbar(props){
         </Link>
       </Button>
 
-      <Button variant="fab" style={{ margin:15, alignContent:'center' }} aria-label="edit" className={window.location.pathname === "/" ? "active nav-link" : "nav-link" }  >
-        <Link onClick={()=>firebase.auth().signOut()} to="/">
+      <Button variant="fab" style={{ margin:15, alignContent:'center' }} aria-label="edit" className={window.location.pathname === "/login" ? "active nav-link" : "nav-link" }  >
+        <Link onClick={()=>firebase.auth().signOut()} to="/login">
           <Logout style={iconsStyle}/>
         </Link>
       </Button>
-
 
     </div>
     
