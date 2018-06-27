@@ -50,7 +50,6 @@ export default props =>
                 <FormLabel component="legend">Meet UP Instance</FormLabel>
                 <FormGroup>
 
-
                    <FriendsListItem />
 
                 </FormGroup>

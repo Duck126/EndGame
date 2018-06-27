@@ -6,19 +6,23 @@ import Result from "./Result";
 import Navbar from "../Navbar";
 import firebase from "firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
-import keys from "../../keys";
+import API from "../../utils/API";
+// import keys from "../../keys";
 
 // console.log("Hello",FB.api);
 
 firebase.initializeApp({
   //apiKey: keys.FB.api,
   //authDomain: keys.FB.auth
- apiKey: "AIzaSyDYTXe8VuIi0gdZVfI1V1kHpJ2N9Xj23-I",
+  apiKey: "AIzaSyDYTXe8VuIi0gdZVfI1V1kHpJ2N9Xj23-I",
  authDomain: "endgame-1529521978924.firebaseapp.com"
 })
 
 class Login extends Component {
-  state = {isSignedIn: false}
+  state = {
+    isSignedIn: false,
+    user: {}
+  }
   uiConfig = {
     signInFlow: "popup",
     signInOptions: [
@@ -33,18 +37,38 @@ class Login extends Component {
   }
 
   componentDidMount = () => {
-   
-
     firebase.auth().onAuthStateChanged(user => {
       this.setState({isSignedIn:!!user})
-      console.log("user",user);
+      this.createNewUser()
     })
   }
+ 
+  createNewUser = () =>{
+      if(firebase.auth().currentUser){
+        API.createUser({
+          userName: firebase.auth().currentUser.displayName,
+          email: firebase.auth().currentUser.email,
+          photoURL: firebase.auth().currentUser.photoURL,
+          // isSignedIn: this.state.isSignedIn,
+        })
+        .then(res=> console.log("user created"))
+        .catch(err => console.log(err));
+      }
+  }
+
+    // loadUsers = () => {
+    //   API.getUsers()
+    //   .then(res =>
+    //     this.setState({ isSignedIn: true })
+    //   )
+    //   .catch(err => console.log(err));
+    // }
 
   render(){
     return (
       <div className="App">
       {this.state.isSignedIn ? (
+        
       <Router>
         <div>
           <Navbar />

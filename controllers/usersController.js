@@ -1,18 +1,23 @@
 const db = require("../models/user.js");
 
-
 module.exports = {
     findAll: function(req, res) {
-      db.User
+      db
         .find(req.query)
-        .sort({ isSignedIn: true })
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
     },
     create: function(req, res) {
-      db.User
-        .create(req.body)
-        .then(dbModel => res.json(dbModel))
-        .catch(err => res.status(422).json(err));
+      db
+        .findOne({email:req.body.email})
+        .then(currentUser => {
+          if(currentUser){
+            res.send("Welcome back!")
+          }else {
+            db.create(req.body)
+            .then(dbModel => res.json(dbModel))
+          }})
     }
   };
+
+  

@@ -4,6 +4,7 @@ import React, {Component} from "react";
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import keys from "../../keys";
 import './PageBody.css';
+// import keys from "../../keys";
 
 
 class Home extends Component {
@@ -61,5 +62,5 @@ class Home extends Component {
 
 // export default Home;
 export default GoogleApiWrapper({
-  apiKey: keys.GOOGLE_MAPS.api_key
+  apiKey:"AIzaSyAMqhG-GED8NdkrqM4tD0zair5WQEuXmwg"
 })(Home)

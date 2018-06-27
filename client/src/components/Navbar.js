@@ -76,31 +76,31 @@ function Navbar(props){
   return (
     <div  >
 
-       <Button variant="fab" style={{ margin:15, alignContent:'center' }} aria-label="edit" className="active nav-link">
+       <Button variant="fab" style={{ margin:2, alignContent:'center' }} aria-label="edit" className="active nav-link">
         
           <User style={iconsStyle} src={firebase.auth().currentUser.photoURL}/>
         
       </Button>
 
-       <Button variant="fab" style={{ margin:15, alignContent:'center' }} aria-label="edit" className={window.location.pathname === "/" ? "active nav-link" : "nav-link" }>
+       <Button variant="fab" style={{ margin:2, alignContent:'center' }} aria-label="edit" className={window.location.pathname === "/" ? "active nav-link" : "nav-link" }>
         <Link to="/">
           <HomeIcon style={iconsStyle}/>
         </Link>
       </Button>
 
-       <Button variant="fab" style={{ margin:15, alignContent:'center' }} aria-label="edit" className={window.location.pathname === "/invite" ? "active nav-link" : "nav-link" }  >
+       <Button variant="fab" style={{ margin:2, alignContent:'center' }} aria-label="edit" className={window.location.pathname === "/invite" ? "active nav-link" : "nav-link" }  >
         <Link to="/invite">
           <GroupIcon style={iconsStyle} />
         </Link>
       </Button>
 
-      <Button variant="fab" style={{ margin:15, alignContent:'center' }} aria-label="add" className={window.location.pathname === "/result" ? "active nav-link" : "nav-link"}>
+      <Button variant="fab" style={{ margin:2, alignContent:'center' }} aria-label="add" className={window.location.pathname === "/result" ? "active nav-link" : "nav-link"}>
         <Link to="/result">
           <Public style={iconsStyle} />
         </Link>
       </Button>
 
-      <Button variant="fab" style={{ margin:15, alignContent:'center' }} aria-label="edit" className={window.location.pathname === "/" ? "active nav-link" : "nav-link" }  >
+      <Button variant="fab" style={{ margin:2, alignContent:'center' }} aria-label="edit" className={window.location.pathname === "/" ? "active nav-link" : "nav-link" }  >
         <Link onClick={()=>firebase.auth().signOut()} to="/">
           <Logout style={iconsStyle}/>
         </Link>
