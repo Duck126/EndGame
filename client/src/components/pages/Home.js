@@ -61,5 +61,5 @@ class Home extends Component {
 
 // export default Home;
 export default GoogleApiWrapper({
-  apiKey: process.env.REACT_APP_GOOGLE_MAPS_API
+  apiKey: "AIzaSyAMqhG-GED8NdkrqM4tD0zair5WQEuXmwg"
 })(Home)

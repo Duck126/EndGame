@@ -17,11 +17,17 @@ firebase.initializeApp({
   authDomain: "endgame-1529521978924.firebaseapp.com"
 })
 
+// firebase.initializeApp({
+//   apiKey: "AIzaSyDYTXe8VuIi0gdZVfI1V1kHpJ2N9Xj23-I",
+//   authDomain: "endgame-1529521978924.firebaseapp.com"
+// })
+
+
 class App extends Component {
   state = {isSignedIn: false}
   uiConfig = {
     signInFlow: "popup",
-    signInSuccessUrl:"http://localhost:3000/home",
+    signInSuccessUrl:"https://endgame2.herokuapp.com/home",
     signInOptions: [
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       firebase.auth.FacebookAuthProvider.PROVIDER_ID,

@@ -18,11 +18,12 @@ import API from "../../utils/API";
 // })
 =======
 firebase.initializeApp({
-  apiKey: process.env.REACT_APP_FB_API,
-  authDomain: process.env.REACT_APP_FB_AUTH_DOMAIN
+  apiKey: "AIzaSyDYTXe8VuIi0gdZVfI1V1kHpJ2N9Xj23-I",
+  authDomain: "endgame-1529521978924.firebaseapp.com"
 })
 >>>>>>> 611c52c10cd4ff8c07758a35d34f7e51e93e76f9
 
+console.log(process.env);
 class Login extends Component {
   state = {
     isSignedIn: false,
