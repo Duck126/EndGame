@@ -10,12 +10,12 @@ import keys from "../../keys";
 
 // console.log("Hello",FB.api);
 
-firebase.initializeApp({
-  apiKey: keys.FB.api,
-  authDomain: keys.FB.auth
-//   apiKey: "AIzaSyDYTXe8VuIi0gdZVfI1V1kHpJ2N9Xj23-I",
-//  authDomain: "endgame-1529521978924.firebaseapp.com"
-})
+// firebase.initializeApp({
+//   apiKey: keys.FB.api,
+//   authDomain: keys.FB.auth
+// //   apiKey: "AIzaSyDYTXe8VuIi0gdZVfI1V1kHpJ2N9Xj23-I",
+// //  authDomain: "endgame-1529521978924.firebaseapp.com"
+// })
 
 class Login extends Component {
   state = {isSignedIn: false}
