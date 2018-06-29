@@ -17,37 +17,15 @@ const styles = {
 
 export default props =>
 
-
 <div className='page-body'> 
-
-  <Paper style={styles.Paper}>
-    <form className=/*{classes.container} noValidate*/ 'valueS'>
-      <TextField
-        id="datetime-local"
-        label="Next appointment"
-        type="datetime-local"
-        defaultValue="2017-05-24T10:30"
-        className=/*{classes.textField}*/ 'valueP'
-        InputLabelProps={{
-          shrink: true,
-        }}
-      />
-    </form>
-    <br />
-   </Paper>    
-
-
-<br />
-
-
   <Paper style={styles.Paper}>
     <Typography variant="title" className=/*{classes.title}*/'valueL'>
-        Your Available Friends:
+        Who's Online:
     </Typography>
         <div className=/*{classes.demo}*/'valueD'>
               <List /*dense={dense}*/ valueK>
                 <FormControl component="fieldset">
-                <FormLabel component="legend">Meet UP Instance</FormLabel>
+                <FormLabel component="legend">Select:</FormLabel>
                 <FormGroup>
 
                    <FriendsListItem />

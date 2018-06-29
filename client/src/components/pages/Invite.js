@@ -7,10 +7,10 @@ import "./PageBody.css";
 
 const styles = {
   Paper: { padding: 20, width: 600 },
-  FriendsList: { padding: 20, width: 600 }
 }
 
 const Invite = () =>
+
   <div className='page-body'>
     <Paper style={styles.Paper}>
       {/* <button className="btn" onClick={()=>firebase.auth().signOut()}> Sign out!</button> */}

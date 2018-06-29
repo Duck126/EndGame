@@ -7,6 +7,9 @@ import Navbar from "../Navbar";
 import firebase from "firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import API from "../../utils/API";
+import "./PageBody.css";
+import Paper from '@material-ui/core/Paper';
+
 // import keys from "../../keys";
 
 // console.log("Hello",FB.api);
@@ -66,32 +69,47 @@ class Login extends Component {
 
   render(){
     return (
-      <div className="App">
-      {this.state.isSignedIn ? (
+
+      <div className='page-body'>
+          <div className="App">
+            {this.state.isSignedIn ? (
         
-      <Router>
-        <div>
-          <Navbar />
-          <Route  exact path="/" component={Home} />
-          <Route exact path="/invite" component={Invite} />
-          <Route exact path="/result" component={Result} />
+              <Router>
+              <div className='page-body'>
+              <Navbar />
+              <Route  exact path="/" component={Home} />
+              <Route exact path="/invite" component={Invite} />
+              <Route exact path="/result" component={Result} />
+              </div>
+              </Router>
+              // <div>
+              // <div>Signed In! </div>
+              // <button className="btn" onClick={()=>firebase.auth().signOut()}> Sign out!</button>
+              // <h1>Welcome {firebase.auth().currentUser.displayName} </h1>
+              // <img alt="user" src={firebase.auth().currentUser.photoURL} />
+             // </div>
+
+              ): 
+      
+              (
+        
+                <Paper>
+
+                <StyledFirebaseAuth 
+             
+                  uiConfig={this.uiConfig}
+                  firebaseAuth={firebase.auth()}
+              
+                />
+
+                </Paper>
+              )
+            </div>
         </div>
-      </Router>
-        // <div>
-        // <div>Signed In! </div>
-        // <button className="btn" onClick={()=>firebase.auth().signOut()}> Sign out!</button>
-        // <h1>Welcome {firebase.auth().currentUser.displayName} </h1>
-        // <img alt="user" src={firebase.auth().currentUser.photoURL} />
-        // </div>
-      ) :
-        (<StyledFirebaseAuth 
-        uiConfig={this.uiConfig}
-        firebaseAuth={firebase.auth()}
-        />)
-        }
-      </div>
     )
+
   }
+  
 }
 
 export default Login;
