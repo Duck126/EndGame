@@ -32,7 +32,7 @@ class Login extends Component {
   }
   uiConfig = {
     signInFlow: "popup",
-    signInSuccessUrl:"http://localhost:3000/home",
+    signInSuccessUrl:"http://localhost:3000/",
     signInOptions: [
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       firebase.auth.FacebookAuthProvider.PROVIDER_ID,
@@ -41,14 +41,15 @@ class Login extends Component {
     ],
     callbacks: {
       signInSucessWithAuthResult: ()  => true,
-      
-    } 
+    }
   }
 
   componentDidMount = () => {
     firebase.auth().onAuthStateChanged(user => {
       this.setState({isSignedIn:!!user})
+      this.updateCurrentUser()
       this.createNewUser()
+      
     })
   }
  
@@ -58,11 +59,21 @@ class Login extends Component {
           userName: firebase.auth().currentUser.displayName,
           email: firebase.auth().currentUser.email,
           photoURL: firebase.auth().currentUser.photoURL,
-          // isSignedIn: this.state.isSignedIn,
+          isSignedIn: this.state.isSignedIn,
         })
         .then(res=> console.log("user created"))
         .catch(err => console.log(err));
       }
+  }
+
+  updateCurrentUser = () => {
+    if(firebase.auth().currentUser){
+      API.updateCurrentUser({
+        email: firebase.auth().currentUser.email
+      })
+      .then(res=> console.log("user updated"))
+      .catch(err => console.log(err));
+    }
   }
 
     // loadUsers = () => {
