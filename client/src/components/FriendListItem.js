@@ -1,5 +1,4 @@
-import React from 'react';
-// import List from '@material-ui/core/List';
+import React, { Component } from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -11,25 +10,33 @@ const styles = {
     ListItem: { background: '#FF5722', text: 'white' }
 }
 
-export default props =>
+class FriendListItem extends Component {
 
-<ListItem style={styles.ListItem}>
-    <ListItemAvatar>
-        <Avatars>
-        </Avatars>
-    </ListItemAvatar>
-    <ListItemText
-        primary="Example Friend"
-        secondary=/*{secondary ? 'Secondary text' : null}*/ 'Other things about your example friend'
-    />
-    <FormControlLabel
-        control={
-              <Checkbox
-                unchecked=/*{this.state.gilad}*/ 'false'
-                onChange=/*{this.handleChange('gilad')}*/ 'false'
-                value="gilad"
-              />
-        }
-        label="Invite"
-        />
-</ListItem>
+    render(){
+        return (
+            <ListItem style={styles.ListItem}>
+                <ListItemAvatar>
+                    <Avatars>
+                    </Avatars>
+                </ListItemAvatar>
+                <ListItemText
+                    primary="Example Friend"
+                    secondary=/*{secondary ? 'Secondary text' : null}*/ 'Other things about your example friend'
+                />
+                <FormControlLabel
+                    control={
+                        <Checkbox
+                            unchecked=/*{this.state.gilad}*/ 'false'
+                            onChange=/*{this.handleChange('gilad')}*/ 'false'
+                            value="gilad"
+                        />
+                    }
+                    label="Invite"
+                />
+            </ListItem>
+        )
+    }
+
+}
+
+export default FriendListItem;

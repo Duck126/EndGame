@@ -1,9 +1,15 @@
-// import FriendsList from "../FriendsList";
 import React, {Component} from "react";
-// import firebase from "firebase";
+import firebase from "firebase";
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 //import keys from "../../keys";
+import { Paper, Typography } from '@material-ui/core';
 import './PageBody.css';
+
+
+const styles = {
+  Paper: { padding: 20, width: 600 },
+}
+
 
 class Home extends Component {
   state = {
@@ -37,22 +43,36 @@ class Home extends Component {
   render (){
     return (
       <div className='page-body'>
-    <h1>Home</h1>
-    <div>Signed In! </div>
-          <Map google={this.props.google}
-          onClick={this.onMapClicked}>
-        <Marker onClick={this.onMarkerClick}
+
+          <Paper style={styles.Paper}>
+          {/* <button className="btn" onClick={()=>firebase.auth().signOut()}> Sign out!</button> */}
+            <Typography variant='Title'>
+              <img alt="user" width="50px" margin='5px' src={firebase.auth().currentUser.photoURL} />
+              Welcome {firebase.auth().currentUser.displayName}! You are signed in.
+            </Typography> 
+            <br />
+
+            <Typography variant='display1'>Result</Typography>
+          </Paper>
+          <br />
+
+
+        <Map google={this.props.google}
+            onClick={this.onMapClicked}>
+              <Marker onClick={this.onMarkerClick}
                 name={'Current location'} />
  
-        <InfoWindow
-          marker={this.state.activeMarker}
-          visible={this.state.showingInfoWindow}>
-            <div>
-              <h1>{this.state.selectedPlace.name}</h1>
-            </div>
-        </InfoWindow>
-      </Map>
-  </div>
+              <InfoWindow
+                marker={this.state.activeMarker}
+                visible={this.state.showingInfoWindow}>
+
+                <div>
+                  <h1>{this.state.selectedPlace.name}</h1>
+                </div>
+              </InfoWindow>
+        </Map>
+
+        </div>
     )
   }
 }
