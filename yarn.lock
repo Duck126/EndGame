@@ -119,7 +119,7 @@
   version "0.2.8"
   resolved "https://registry.yarnpkg.com/@firebase/webchannel-wrapper/-/webchannel-wrapper-0.2.8.tgz#38a936b60b898a1ad0f3719543ff1a1031f60f8b"
 
-"@material-ui/core@^1.3.0":
+"@material-ui/core@^1.2.3":
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-1.3.0.tgz#cc06d2ddc594c5563e73c0364763b8502dbc260e"
   dependencies:
@@ -2687,7 +2687,7 @@ readdirp@^2.0.0:
     readable-stream "^2.0.2"
     set-immediate-shim "^1.0.1"
 
-recompose@^0.27.0:
+"recompose@^0.26.0 || ^0.27.0", recompose@^0.27.0:
   version "0.27.1"
   resolved "https://registry.yarnpkg.com/recompose/-/recompose-0.27.1.tgz#1a49e931f183634516633bbb4f4edbfd3f38a7ba"
   dependencies:
