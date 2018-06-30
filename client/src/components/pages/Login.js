@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {BrowserRouter as Router, Route} from "react-router-dom"
-import Home from "./Home";
+import Home from "./Home2";
 import Invite from "./Invite";
 import Result from "./Result";
 import Navbar from "../Navbar";

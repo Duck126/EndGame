@@ -6,6 +6,11 @@ import { Paper, Typography } from '@material-ui/core';
 import './PageBody.css';
 
 
+// let currentLocation = new google.maps.LatLng({
+//   lat: 30.2747, lng: -97.7404
+// })
+
+
 const styles = {
   Paper: { padding: 20, width: 600 },
 }
@@ -54,17 +59,17 @@ class Home extends Component {
 
         <Map google={this.props.google}
             onClick={this.onMapClicked}>
-              <Marker onClick={this.onMarkerClick}
-                name={'Current location'} />
- 
-              <InfoWindow
-                marker={this.state.activeMarker}
-                visible={this.state.showingInfoWindow}>
+          <Marker onClick={this.onMarkerClick}
+            name={'Current location'} />
 
-                <div>
-                  <h1>{this.state.selectedPlace.name}</h1>
-                </div>
-              </InfoWindow>
+          <InfoWindow
+            marker={this.state.activeMarker}
+            visible={this.state.showingInfoWindow}>
+
+            <div>
+              <h1>{this.state.selectedPlace.name}</h1>
+            </div>
+          </InfoWindow>
         </Map>
 
         </div>
