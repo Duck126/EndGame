@@ -29,12 +29,12 @@
     "dotenv": "^6.0.0",
     "express": "^4.15.4",
     "firebase": "^5.1.0",
-    "google-maps-react": "^2.0.2",
     "if-env": "^1.0.4",
     "mongoose": "^5.1.6",
     "prop-types": "^15.6.2",
     "react-firebaseui": "^3.0.4",
     "react-google-maps": "^9.4.5",
-    "react-router-dom": "^4.3.1"
+    "react-router-dom": "^4.3.1",
+    "recompose": "^0.27.1"
   }
 }

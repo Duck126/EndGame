@@ -52,6 +52,8 @@ class Login extends Component {
           email: firebase.auth().currentUser.email,
           photoURL: firebase.auth().currentUser.photoURL,
           isSignedIn: this.state.isSignedIn,
+          Lat:0,
+          Lng:0,
         })
         .then(res=> console.log("user created"))
         .catch(err => console.log(err));

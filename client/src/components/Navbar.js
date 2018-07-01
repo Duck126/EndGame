@@ -68,8 +68,26 @@ class Navbar extends Component {
 
   state = { 
       isSignedIn: true,
-      user: firebase.auth().currentUser
+      user: firebase.auth().currentUser,
+      center:{
+        lat: 0,
+      lng: 0,
+      }
   }
+
+  // componentDidMount() {
+  //   console.log('component did mount fired');
+  //   console.log(this.state.user);
+  //   navigator.geolocation.getCurrentPosition((location) => {
+  //     console.log(location);
+  //     this.setState({
+  //       center:{
+  //         lat: location.coords.latitude,
+  //       lng: location.coords.longitude,
+  //       }
+  //     });
+  //   });
+  // }
 
 
 handleSignOut = () =>{
