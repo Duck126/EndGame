@@ -13,27 +13,29 @@ const styles = {
 }
 
 
-function FriendListItem (props){
-   let liveUser = {liveUsers: props.liveUsers}  
+function FriendListItem (props){ 
     return (
-        <ListItem style={styles.ListItem}>
+        <ListItem 
+        style={styles.ListItem}
+        key={props._id}
+        >
         <ListItemAvatar>
             <Avatars
-            alt="yep"//{props.} 
-            src="yep"//{props.photoURL}
+            alt={props.userName} 
+            src={props.photoURL}
             >
             </Avatars>
         </ListItemAvatar>
         <ListItemText
-            primary={props.liveUser.liveUsers.name}
-            secondary=""//{props.online} 
+            primary={props.userName}
+            secondary={props.online} 
         />
         <FormControlLabel
         control={
             <Checkbox
-                unchecked=""//{props.checked}
-                onChange=""//{props.handleChange()}
-                value=""//{props.email}
+                unchecked={props.checked}
+                onChange={props.handleChange}
+                value={props.email}
             />
         }
             label="Invite"
@@ -41,11 +43,5 @@ function FriendListItem (props){
     </ListItem>
     )
 }
-
-
-    
-     
-
-
 
 export default FriendListItem;

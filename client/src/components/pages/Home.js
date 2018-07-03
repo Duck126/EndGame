@@ -1,3 +1,4 @@
+//import FriendsList from "../FriendsList";
 import React, {Component} from "react";
 // import firebase from "firebase";
 import  Map from "./../maps/map.js";
