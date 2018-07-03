@@ -1,6 +1,7 @@
 import React, {Component} from "react";
-import firebase from "firebase";
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+// import firebase from "firebase";
+import  Map from "./../maps/map.js";
+// import API from "../../utils/API";
 //import keys from "../../keys";
 import { Paper, Typography } from '@material-ui/core';
 import './PageBody.css';

@@ -2,8 +2,8 @@ import axios from "axios";
 
 export default {
   // Gets all Users
-  getUsers: function(userData) {
-    return axios.get("/api/users", userData);
+  getUsers: function() {
+    return axios.get("/api/users");
   },
   // Create a user to the database
   createUser: function(userData) {
