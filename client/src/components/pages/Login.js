@@ -22,8 +22,6 @@ const styles = {
     width: 300, 
     margin: 'auto', 
     paddingTop: 30
-
-
   },
 }
 
