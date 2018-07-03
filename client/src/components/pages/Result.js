@@ -10,6 +10,6 @@ const Result = () =>
       {/* <button className="btn" onClick={()=>firebase.auth().signOut()}> Sign out!</button> */}
         <h1>Welcome {firebase.auth().currentUser.displayName} </h1>
         <img alt="user" src={firebase.auth().currentUser.photoURL} />
-  </div>;
+  </div>
 
 export default Result;

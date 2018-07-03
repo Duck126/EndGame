@@ -7,5 +7,7 @@ router.route("/")
   .post(usersController.create)
   .put(usersController.updateSignIn);
 
+  router.route("/updateLocation").put(usersController.updateLocation);
+
 
 module.exports = router;

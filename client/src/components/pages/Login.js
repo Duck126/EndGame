@@ -13,6 +13,7 @@ firebase.initializeApp({
   apiKey: "AIzaSyDYTXe8VuIi0gdZVfI1V1kHpJ2N9Xj23-I",
   authDomain: "endgame-1529521978924.firebaseapp.com"
 })
+
 class Login extends Component {
   state = {
     isSignedIn: false,
@@ -31,6 +32,7 @@ class Login extends Component {
       signInSucessWithAuthResult: ()  => true,
     }
   }
+
   componentDidMount = () => {
     firebase.auth().onAuthStateChanged(user => {
       this.setState({isSignedIn:!!user})
@@ -46,12 +48,16 @@ class Login extends Component {
           email: firebase.auth().currentUser.email,
           photoURL: firebase.auth().currentUser.photoURL,
           isSignedIn: this.state.isSignedIn,
+          Lat:0,
+          Lng:0
         })
         .then(res=> console.log("user created"))
         .catch(err => console.log(err));
       }
   }
+
   
+
     // loadUsers = () => {
     //   API.getUsers()
     //   .then(res =>
@@ -59,38 +65,39 @@ class Login extends Component {
     //   )
     //   .catch(err => console.log(err));
     // }
-  render(){
-    return (
-      <div className="App">
-      {this.state.isSignedIn ? (
-        
-      <Router>
-        <div>
-          <Navbar />
-          <Route  exact path="/" component={Home} />
-          <Route exact path="/invite" component={Invite} />
-          <Route exact path="/result" component={Result} />
-        </div>
-      </Router>
-        // <div>
-        // <div>Signed In! </div>
-        // <button className="btn" onClick={()=>firebase.auth().signOut()}> Sign out!</button>
-        // <h1>Welcome {firebase.auth().currentUser.displayName} </h1>
-        // <img alt="user" src={firebase.auth().currentUser.photoURL} />
-        // </div>
-      ) :
-        (<div>
-          <h1>Log In Here!</h1> 
-          <StyledFirebaseAuth 
-        uiConfig={this.uiConfig}
-        firebaseAuth={firebase.auth()}
-        />
+    render(){
+      return (
+        <div className="App">
+        {this.state.isSignedIn ? (
+          
+        <Router>
+          <div>
+            <Navbar />
+            <Route  exact path="/" component={Home} />
+            <Route exact path="/invite" component={Invite} />
+            <Route exact path="/result" component={Result} />
           </div>
-       )
-        }
-      </div>
-    )
+        </Router>
+          // <div>
+          // <div>Signed In! </div>
+          // <button className="btn" onClick={()=>firebase.auth().signOut()}> Sign out!</button>
+          // <h1>Welcome {firebase.auth().currentUser.displayName} </h1>
+          // <img alt="user" src={firebase.auth().currentUser.photoURL} />
+          // </div>
+        ) :
+          (<div>
+            <h1>Log In Here!</h1> 
+            <StyledFirebaseAuth 
+          uiConfig={this.uiConfig}
+          firebaseAuth={firebase.auth()}
+          />
+            </div>
+         )
+          }
+        </div>
+      )
+    }
   }
-}
-export default Login;
+  
+  export default Login;
 

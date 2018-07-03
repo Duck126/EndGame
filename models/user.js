@@ -6,8 +6,8 @@ const userSchema = new Schema({
   email: { type: String, required: true },
   photoURL: {type:String},
   isSignedIn: {type:Boolean},
-  locationLat: {type:Number},
-  locationLng: {type:Number},
+  Lat: {type:Schema.Types.Decimal128},
+  Lng: {type:Schema.Types.Decimal128},
   date: { type: Date, default: Date.now }
 });
 
