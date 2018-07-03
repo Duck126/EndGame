@@ -69,10 +69,6 @@ class Navbar extends Component {
   state = { 
       isSignedIn: true,
       user: firebase.auth().currentUser,
-      center:{
-        lat: 0,
-      lng: 0,
-      }
   }
 
   // componentDidMount() {

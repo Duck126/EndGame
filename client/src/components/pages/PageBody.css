@@ -10,4 +10,14 @@
     align-content: flex-start;
     overflow: auto;
   }
-  
+
+.logo-box {
+    align-content: center;
+}
+ 
+
+img {
+  align-content: center;
+  border: #26C6DA;
+}
+

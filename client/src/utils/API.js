@@ -14,6 +14,6 @@ export default {
     return axios.put("/api/users", userData)
   },
   updateLocation: function(userData){
-    return axios.put("/api/users", userData)
+    return axios.put("/api/users/updateLocation", userData)
   }
 };

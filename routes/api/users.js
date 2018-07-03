@@ -5,8 +5,9 @@ const usersController = require("../../controllers/usersController");
 router.route("/")
   .get(usersController.findAll)
   .post(usersController.create)
-  .put(usersController.updateSignIn)
-  .put(usersController.updateLocation);
+  .put(usersController.updateSignIn);
+
+  router.route("/updateLocation").put(usersController.updateLocation);
 
 
 module.exports = router;
