@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import firebase from "firebase";
 import FriendsList from "../FriendsList";
+import Inputs from "../Inputs";
 import { Paper, Typography } from "@material-ui/core";
 import "./PageBody.css";
 import API from "../../utils/API";
@@ -64,4 +65,10 @@ class Invite extends Component {
     }
   }
 
+            <Inputs />
+
+          </div>
+        )
+      }
+  }
 export default Invite;

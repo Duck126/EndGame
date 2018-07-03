@@ -2,12 +2,12 @@ import React from 'react';
 // import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-import TextField from '@material-ui/core/TextField';
 import List from '@material-ui/core/List';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FriendsListItem from './FriendListItem';
+import TimePicker from './TimePicker';
 
 
 const styles = {
