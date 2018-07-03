@@ -1,22 +1,29 @@
 import React, { Component } from "react";
 import {BrowserRouter as Router, Route} from "react-router-dom"
-import Home from "./Home";
+import Home from "./Home2";
 import Invite from "./Invite";
 import Result from "./Result";
 import Navbar from "../Navbar";
 import firebase from "firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import API from "../../utils/API";
+import { Paper, Typography } from '@material-ui/core';
+import './PageBody.css';
 // import keys from "../../keys";
 
-// console.log("Hello",FB.api);
-
 firebase.initializeApp({
-  // apiKey: keys.FB.api,
-  // authDomain: keys.FB.auth
   apiKey: "AIzaSyDYTXe8VuIi0gdZVfI1V1kHpJ2N9Xj23-I",
- authDomain: "endgame-1529521978924.firebaseapp.com"
+  authDomain: "endgame-1529521978924.firebaseapp.com"
 })
+
+const styles = {
+  Paper: { 
+    padding: 20, 
+    width: 300, 
+    margin: 'auto', 
+    paddingTop: 30
+  },
+}
 
 class Login extends Component {
   state = {
@@ -25,7 +32,7 @@ class Login extends Component {
   }
   uiConfig = {
     signInFlow: "popup",
-    signInSuccessUrl:"http://localhost:3000",
+    signInSuccessUrl: window.location,
     signInOptions: [
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       firebase.auth.FacebookAuthProvider.PROVIDER_ID,
@@ -52,8 +59,6 @@ class Login extends Component {
           email: firebase.auth().currentUser.email,
           photoURL: firebase.auth().currentUser.photoURL,
           isSignedIn: this.state.isSignedIn,
-          Lat:0,
-          Lng:0
         })
         .then(res=> console.log("user created"))
         .catch(err => console.log(err));
@@ -89,14 +94,17 @@ class Login extends Component {
           // <img alt="user" src={firebase.auth().currentUser.photoURL} />
           // </div>
         ) :
-          (<div>
-            <h1>Log In Here!</h1> 
-            <StyledFirebaseAuth 
-          uiConfig={this.uiConfig}
-          firebaseAuth={firebase.auth()}
-          />
-            </div>
-         )
+          (
+            <Paper style={styles.Paper}>
+              <div className='logo-box' align='center' bottom-margin='10'>
+                <img src='./eglogo.png' width='200'/>
+                <StyledFirebaseAuth 
+                  uiConfig={this.uiConfig}
+                  firebaseAuth={firebase.auth()}
+                />
+              </div>
+            </Paper>
+           )
           }
         </div>
       )
