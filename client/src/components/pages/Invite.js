@@ -16,14 +16,44 @@ class Invite extends Component {
     this.state = {
       isSignedIn: true,
       user: {},
-      value: 0,
+      group: [],
       checked: false,
-      liveUsers: [], 
+      liveUsers: [],
+      handleChange: this.handleChange
     };
   };
 
-  handleChange = name => event => {
-    this.setState({ [name]: event.target.checked = true });
+  componentWillUpdate(nextProps, nextState){
+    console.log("Invite Js line 27", nextState);
+    // this.props.groupStateUpdate(this.state.group);
+  }
+
+  handleGroupSubmit = (e) => {
+    e.preventDefault();
+    console.log("In Submit Function");
+    this.props.groupStateUpdate(this.state.group);
+  }
+  
+
+  handleChange = event => {
+    var tempArr= [];
+    console.log(event.target);
+    if(this.state.checked === false){
+      tempArr= [...this.state.group, event.target.value]
+      this.setState({ 
+        group: tempArr,
+        checked: true
+      });
+    } else if (this.state.checked === true) {
+      tempArr = [...this.state.group];
+      let index = tempArr.indexOf(event.target.value);
+      tempArr.splice(index, 1);
+      this.setState({
+        group: tempArr,
+        checked: false
+      });
+    }
+    console.log(tempArr);
   };
 
   componentDidMount() {
@@ -38,7 +68,6 @@ class Invite extends Component {
     .catch(err=>console.log(err))
   }    
     
-  
     render(){
       
       let users = this.state.liveUsers;
@@ -57,7 +86,9 @@ class Invite extends Component {
           <br />
           <FriendsList
            users = {this.state.liveUsers}
-           handleChange = {this.state.handleChange}
+           handleChange = {this.handleChange}
+           checked = {this.checked}
+           submit = {this.handleGroupSubmit}
            />
           
         </div>
@@ -65,10 +96,10 @@ class Invite extends Component {
     }
   }
 
-            <Inputs />
+  //           <Inputs />
 
-          </div>
-        )
-      }
-  }
+  //         </div>
+  //       )
+  //     }
+  // }
 export default Invite;

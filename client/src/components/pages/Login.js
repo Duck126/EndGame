@@ -17,7 +17,8 @@ firebase.initializeApp({
 class Login extends Component {
   state = {
     isSignedIn: false,
-    user: {}
+    user: {},
+    groupList: []
   }
   uiConfig = {
     signInFlow: "popup",
@@ -56,8 +57,6 @@ class Login extends Component {
       }
   }
 
-  
-
     // loadUsers = () => {
     //   API.getUsers()
     //   .then(res =>
@@ -65,6 +64,19 @@ class Login extends Component {
     //   )
     //   .catch(err => console.log(err));
     // }
+
+    componentWillUpdate(nextProps, nextState) {
+      console.log(nextState.groupList);
+    }
+
+    groupStateUpdate= (groupValue) =>{
+      this.setState({groupList: [...groupValue]});
+    }
+
+    //To Do: Pass group to the Result Page as
+
+    
+
     render(){
       return (
         <div className="App">
@@ -74,7 +86,9 @@ class Login extends Component {
           <div>
             <Navbar />
             <Route  exact path="/" component={Home} />
-            <Route exact path="/invite" component={Invite} />
+            <Route exact path="/invite" 
+            component={() => <Invite group={this.state.groupList} groupStateUpdate={this.groupStateUpdate}/>}
+            />
             <Route exact path="/result" component={Result} />
           </div>
         </Router>
