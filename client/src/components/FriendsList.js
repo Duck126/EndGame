@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
+import InviteButton from './InviteButton';
 import List from '@material-ui/core/List';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormLabel from '@material-ui/core/FormLabel';
@@ -30,7 +31,7 @@ function FriendsList (props){
             <div className=/*{classes.demo}*/'valueD'>
                   <List /*dense={dense}*/ className='valueK'>
                     <FormControl component="fieldset">
-                    <FormLabel component="legend">Meet UP Instance</FormLabel>
+                    <FormLabel component="legend"></FormLabel>
                     <FormGroup>
                       {props.users.map((item, index ) => (
                         <FriendsListItem 
@@ -47,9 +48,7 @@ function FriendsList (props){
                     </FormControl>
                   </List>
                   </div>
-              <Button variant="contained" /*className={classes.button}*/>
-              Invite
-              </Button> 
+          <InviteButton />
       </Paper>
 
     )

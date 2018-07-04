@@ -8,8 +8,15 @@ const Result = () =>
     <h1>Result</h1>
     <div>Signed In! </div>
       {/* <button className="btn" onClick={()=>firebase.auth().signOut()}> Sign out!</button> */}
-        <h1>Welcome {firebase.auth().currentUser.displayName} </h1>
-        <img alt="user" src={firebase.auth().currentUser.photoURL} />
-  </div>
+      <Typography variant='Title'>
+        <img alt="user" width="50px" margin='5px' src={firebase.auth().currentUser.photoURL} />
+        Welcome {firebase.auth().currentUser.displayName}! You are signed in.
+        </Typography> 
+        <br />
+
+      <Typography variant='display1'>Result</Typography>
+              </Paper>
+            <br />
+  </div>;
 
 export default Result;

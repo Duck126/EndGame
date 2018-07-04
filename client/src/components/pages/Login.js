@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {BrowserRouter as Router, Route} from "react-router-dom"
+import Paper from '@material-ui/core/Paper';
 import Home from "./Home";
 import Invite from "./Invite";
 import Result from "./Result";
@@ -17,6 +18,17 @@ firebase.initializeApp({
   apiKey: "AIzaSyDYTXe8VuIi0gdZVfI1V1kHpJ2N9Xj23-I",
  authDomain: "endgame-1529521978924.firebaseapp.com"
 })
+
+const styles = {
+  Paper: { 
+    padding: 20, 
+    width: 300, 
+    margin: 'auto', 
+    paddingTop: 30
+
+
+  },
+}
 
 class Login extends Component {
   state = {
@@ -89,13 +101,15 @@ class Login extends Component {
           // <img alt="user" src={firebase.auth().currentUser.photoURL} />
           // </div>
         ) :
-          (<div>
-            <h1>Log In Here!</h1> 
-            <StyledFirebaseAuth 
-          uiConfig={this.uiConfig}
-          firebaseAuth={firebase.auth()}
-          />
+          (<Paper style={styles.Paper}>
+            <div className='logo-box' align='center' bottom-margin='10'>
+              <img src='./eglogo.png' width='200'/>
+              <StyledFirebaseAuth 
+                uiConfig={this.uiConfig}
+                firebaseAuth={firebase.auth()}
+              />
             </div>
+          </Paper>
          )
           }
         </div>

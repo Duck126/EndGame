@@ -1,4 +1,4 @@
-// import FriendsList from "../FriendsList";
+//import FriendsList from "../FriendsList";
 import React, {Component} from "react";
 import firebase from "firebase";
 import { Paper, Typography } from '@material-ui/core';
