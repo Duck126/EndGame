@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import firebase from "firebase";
 import FriendsList from "../FriendsList";
-import Inputs from "../Inputs";
-import { Paper, Typography } from "@material-ui/core";
+// import InviteButton from '../InviteButton';
+import TimePicker from "../TimePicker";
+import { Paper, Typography, Grid } from "@material-ui/core";
 import "./PageBody.css";
 import API from "../../utils/API";
 
 const styles = {
-  Paper: { padding: 20, width: 600 },
+  Paper: { padding: 20, width: 600, margin: 'auto' },
 }
 
 class Invite extends Component { 

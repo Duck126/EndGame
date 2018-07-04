@@ -5,7 +5,7 @@ import './PageBody.css';
 
 
 const styles = {
-  Paper: { padding: 20, width: 600 },
+  Paper: { padding: 20, width: 600, margin: 'auto' },
 }
 
 const Result = () =>

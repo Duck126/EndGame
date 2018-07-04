@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 
 const styles = {
-  Paper: { padding: 20, width: 600, align: "center" },
+  Paper: { padding: 20, width: 600, margin: 'auto' },
   }
 
 

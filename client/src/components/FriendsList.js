@@ -1,24 +1,21 @@
 import React from 'react';
-// import Grid from '@material-ui/core/Grid';
+import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import InviteButton from './InviteButton';
 import List from '@material-ui/core/List';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FriendsListItem from './FriendListItem';
-import TimePicker from './TimePicker';
 
 
 const styles = {
-  Paper: { padding: 20, width: 600, align: "center" },
-  }
-
-
-//export default props => {
- 
-
+  Paper: { padding: 20, width: 600, margin: 'auto'  },
+  Button: { backgroundColor: '#26C6DA', width: 560 }
+}
 
 function FriendsList (props){
   //users = props.liveUsers;
@@ -87,7 +84,3 @@ function FriendsList (props){
 }
 
 export default FriendsList;
-
-
-/*need js logic to store the date and date from form to create instance on EndGame. 
-also need to know where to get data to populate the list*/

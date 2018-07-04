@@ -9,7 +9,7 @@ import Avatars from './Avatars';
 
 
 const styles = {
-    ListItem: { background: '#FF5722', text: 'white' }
+    ListItem: { background: '#FF5722', text: 'white', width: 560, padding: 10 }
 }
 
 
