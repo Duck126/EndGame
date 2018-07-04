@@ -1,6 +1,7 @@
 import React from "react";
 import firebase from "firebase";
 import './PageBody.css';
+import { Paper, Typography, Grid } from "@material-ui/core";
 
 
 const Result = () =>
@@ -15,7 +16,7 @@ const Result = () =>
         <br />
 
       <Typography variant='display1'>Result</Typography>
-              </Paper>
+              
             <br />
   </div>;
 

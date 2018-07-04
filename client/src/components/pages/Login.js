@@ -9,6 +9,7 @@ import firebase from "firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import API from "../../utils/API";
 // import keys from "../../keys";
+import { Paper, Typography, Grid } from "@material-ui/core";
 
 // console.log("Hello",FB.api);
 
