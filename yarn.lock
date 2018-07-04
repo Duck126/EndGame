@@ -147,7 +147,7 @@
     react-jss "^8.1.0"
     react-popper "^0.10.0"
     react-transition-group "^2.2.1"
-    recompose "^0.27.0"
+    recompose "^0.26.0 || ^0.27.0"
     scroll "^2.0.3"
     warning "^4.0.1"
 
@@ -2720,6 +2720,7 @@ readdirp@^2.0.0:
     set-immediate-shim "^1.0.1"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -2728,6 +2729,8 @@ recompose@^0.27.0:
 =======
 >>>>>>> 0fa853479ad15735b0a9bd8f50dd6379f5c52174
 >>>>>>> 5b313a03cd1d396d4e42bed793b43fdca74d2cf1
+=======
+>>>>>>> fd807241a475ecb5135eae0f8afb8306275170e9
 recompose@^0.26.0:
   version "0.26.0"
   resolved "https://registry.yarnpkg.com/recompose/-/recompose-0.26.0.tgz#9babff039cb72ba5bd17366d55d7232fbdfb2d30"
@@ -2738,6 +2741,7 @@ recompose@^0.26.0:
     symbol-observable "^1.0.4"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 "recompose@^0.26.0 || ^0.27.0", recompose@^0.27.0:
 =======
 <<<<<<< HEAD
@@ -2747,6 +2751,9 @@ recompose@^0.26.0:
 "recompose@^0.26.0 || ^0.27.0", recompose@^0.27.0, recompose@^0.27.1:
 >>>>>>> 0fa853479ad15735b0a9bd8f50dd6379f5c52174
 >>>>>>> 5b313a03cd1d396d4e42bed793b43fdca74d2cf1
+=======
+"recompose@^0.26.0 || ^0.27.0", recompose@^0.27.1:
+>>>>>>> fd807241a475ecb5135eae0f8afb8306275170e9
   version "0.27.1"
   resolved "https://registry.yarnpkg.com/recompose/-/recompose-0.27.1.tgz#1a49e931f183634516633bbb4f4edbfd3f38a7ba"
   dependencies:

@@ -8,13 +8,15 @@ import Navbar from "../Navbar";
 import firebase from "firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import API from "../../utils/API";
-import { Paper, Typography } from '@material-ui/core';
-import './PageBody.css';
 // import keys from "../../keys";
 
+// console.log("Hello",FB.api);
+
 firebase.initializeApp({
+  // apiKey: keys.FB.api,
+  // authDomain: keys.FB.auth
   apiKey: "AIzaSyDYTXe8VuIi0gdZVfI1V1kHpJ2N9Xj23-I",
-  authDomain: "endgame-1529521978924.firebaseapp.com"
+ authDomain: "endgame-1529521978924.firebaseapp.com"
 })
 
 const styles = {
@@ -61,6 +63,8 @@ class Login extends Component {
           email: firebase.auth().currentUser.email,
           photoURL: firebase.auth().currentUser.photoURL,
           isSignedIn: this.state.isSignedIn,
+          Lat:0,
+          Lng:0
         })
         .then(res=> console.log("user created"))
         .catch(err => console.log(err));

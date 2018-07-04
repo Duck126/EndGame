@@ -10,7 +10,7 @@ import './PageBody.css';
 const styles = {
   Paper: { padding: 20, width: 600, margin: 'auto' },
   Map: { padding: 20, width: 600, margin: 'auto' },
-}
+};
 
 class Home extends Component {
 
@@ -20,20 +20,20 @@ class Home extends Component {
 
           <Paper style={styles.Paper}>
 
-            <Typography variant='Title'>
+            <Typography className='Title'>
               <img alt="user" width="50px" margin='5px' src={firebase.auth().currentUser.photoURL}/>
-              Welcome {firebase.auth().currentUser.displayName}! You are signed in.
+             <p> Welcome {firebase.auth().currentUser.displayName}! You are signed in.</p>
             </Typography> 
             <br />
 
-            {/* <Typography variant="display1"></Typography> */}
+            { <Typography variant="display1"></Typography> }
           </Paper>
 
           <br />
 
           <Map style={styles.Map}/>
 
-        </div>
+      </div>
     )
   }
 }

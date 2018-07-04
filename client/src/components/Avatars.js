@@ -19,8 +19,8 @@ import Avatar from '@material-ui/core/Avatar';
 export default props =>
 <div>
       <Avatar
-        alt={props.alt}
-        src={props.src}
+        alt="Adelle Charles"
+        src="/static/images/uxceo-128.jpg"
         className=/*{classNames(classes.avatar, classes.bigAvatar)}*/ 'valueO'
       />
 </div>

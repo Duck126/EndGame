@@ -1,34 +1,29 @@
-import React, { Component} from 'react';
+import React from 'react';
 import TextField from '@material-ui/core/TextField';
-import Paper from '@material-ui/core/Paper';
-
-const styles = {
-  Paper: { padding: 20, width: 600, margin: 'auto' },
-  }
 
 
-class Inputs extends Component{
 
-  render() {
-    return(
+export default props =>
 
-        <Paper style={styles.Paper}>
+    <div className='inputFields'>
 
-        <TextField
-          id="multiline-flexible"
-          label="Invite Friends by Entering their Email"
-          multiline
-          rowsMax="6"
-          value=/*{this.state.multiline}*/ ''
-          onChange=/*{this.handleChange('multiline')}*/ 'l'
-          className=/*{classes.textField}*/ 'm'
+      <TextField
+          id="name"
+          label="Name"
+          className=/*{classes.textField}*/ 'valueB'
+          value=/*{this.state.name}*/ ''
+          onChange=/*{this.handleChange('name')}*/ 'valueF'
           margin="normal"
         />
-        </Paper>
 
-    )
-  }
-}
+       <TextField
+          id="password-input"
+          label="Password"
+          className=/*{classes.textField}*/ 'valueC'
+          type="password"
+          autoComplete="current-password"
+          margin="normal"
+        />
 
-export default Inputs;
+    </div>
 
