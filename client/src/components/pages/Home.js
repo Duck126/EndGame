@@ -1,9 +1,10 @@
 import React, {Component} from "react";
 import firebase from "firebase";
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+//import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 //import keys from "../../keys";
-import { Paper, Typography } from '@material-ui/core';
-import  Map from "./../maps/map.js";
+import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
+//import  Map from "./../maps/map.js";
 import './PageBody.css';
 
 
@@ -24,14 +25,15 @@ class Home extends Component {
               <img alt="user" width="50px" margin='5px' src={firebase.auth().currentUser.photoURL}/>
              <p> Welcome {firebase.auth().currentUser.displayName}! You are signed in.</p>
             </Typography> 
-            <br />
+            <br/>
 
-            { <Typography variant="display1"></Typography> }
+            <Typography variant="display1">
+            </Typography>
           </Paper>
 
           <br />
 
-          <Map style={styles.Map}/>
+          {/* <Map style={styles.Map}/> */}
 
       </div>
     )
