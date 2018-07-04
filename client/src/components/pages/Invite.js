@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import firebase from "firebase";
 import FriendsList from "../FriendsList";
-// import InviteButton from '../InviteButton';
+import InviteButton from '../InviteButton';
 import TimePicker from "../TimePicker";
 import { Paper, Typography, Grid } from "@material-ui/core";
 import "./PageBody.css";
@@ -91,7 +91,6 @@ class Invite extends Component {
            checked = {this.checked}
            submit = {this.handleGroupSubmit}
            />
-          
         </div>
       )
     }

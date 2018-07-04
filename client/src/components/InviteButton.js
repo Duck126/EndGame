@@ -12,7 +12,7 @@ const styles = {
       render() {
     return(
 
-    <Button variant="contained" style={styles.InviteButton}/*className={classes.button}*/>
+    <Button variant="contained" type="submit" style={styles.InviteButton}/*className={classes.button}*/>
     Invite
     </Button>
 )

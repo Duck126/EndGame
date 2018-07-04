@@ -83,6 +83,7 @@ class Login extends Component {
 
     groupStateUpdate= (groupValue) =>{
       this.setState({groupList: [...groupValue]});
+      console.log(this.state.groupList);
     }
 
     //To Do: Pass group to the Result Page as

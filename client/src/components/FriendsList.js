@@ -69,14 +69,15 @@ function FriendsList (props){
                           </FriendsListItem>
                         ))}
                       </FormGroup>
-                      <button 
+                      <InviteButton/>
+                      {/* <button 
                       type= "submit"
                       >
                       Submit
-                      </button>
+                      </button> */}
                       </FormControl>
                   </List>
-                </form>
+                 </form> 
             </div>
       </Paper>
     </div>
