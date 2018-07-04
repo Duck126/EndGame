@@ -20,9 +20,19 @@ const Invite = () =>
       </Typography> 
       <br />
 
-        <Typography variant='display1'>Invite</Typography>
-    </Paper>
-    <br />
+              <Typography variant='display1'>Invite</Typography>
+              </Paper>
+            </Grid>
+            <br />
+            <Grid item xs={12}>
+              <TimePicker />    
+            </Grid>
+            <br />
+            <Grid item xs={12}>
+            <FriendsList 
+              users = {this.state.liveUsers}
+              handleChange = {this.state.handleChange}/>
+            </Grid>
 
 
    <FriendsList />
