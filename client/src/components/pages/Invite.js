@@ -55,6 +55,7 @@ class Invite extends Component {
       });
     }
     console.log(tempArr);
+    console.log(this.state.group);
   };
 
   componentDidMount() {
