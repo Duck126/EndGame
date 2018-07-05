@@ -8,6 +8,7 @@ const userSchema = new Schema({
   isSignedIn: {type:Boolean},
   Lat: {type:Schema.Types.Decimal128},
   Lng: {type:Schema.Types.Decimal128},
+  friends: {type:Schema.Types.Array},
   date: { type: Date, default: Date.now }
 });
 

@@ -11,75 +11,95 @@ const styles = {
   Paper: { padding: 20, width: 600, margin: 'auto' },
 }
 
-  class Invite extends Component { 
-    constructor(props) {
-      super(props); 
-      this.state = {
-        isSignedIn: true,
-        user: {},
-        value: 0,
-        checked: false,
-        liveUsers: [], 
-      };
+class Invite extends Component { 
+  constructor(props) {
+    super(props); 
+    this.state = {
+      isSignedIn: true,
+      user: {},
+      group: [],
+      checked: false,
+      liveUsers: [],
+      handleChange: this.handleChange
     };
-  
-    handleChange = name => event => {
-      this.setState({ [name]: event.target.checked = true });
-    };
-  
-    componentDidMount() {
-      API.getUsers()
-      .then((response)=> {
-        this.setState(()=>{
-          return {
-            liveUsers: response.data
-          }
-        })
-      })
-      .catch(err=>console.log(err))
-    }    
-    
-    
-    render(){
-      let users = this.state.liveUsers;
-      return (
-          <div className='page-body'>
-            <Grid container spacing={24}> 
-            <Grid item xs={12}> 
-                <Paper style={styles.Paper}>
-                  {/* <button className="btn" onClick={()=>firebase.auth().signOut()}> Sign out!</button> */}
-                    <Typography variant='Title'>
-                    <img alt="user" width="50px" margin='5px'src={firebase.auth().currentUser.photoURL} />
-                    Welcome {firebase.auth().currentUser.displayName}! You are signed in.
-                    </Typography> 
-                <br />
+  };
 
-              <Typography variant='display1'>Invite</Typography>
-              </Paper>
-            </Grid>
-            <br />
-            <Grid item xs={12}>
-              <TimePicker />    
-            </Grid>
-            <br />
-            <Grid item xs={12}>
-            <FriendsList 
-              users = {this.state.liveUsers}
-              handleChange = {this.state.handleChange}
-            />
-
-            </Grid>
-
-             <Grid item xs={12}>
-
-
-            </Grid>
-
-            </Grid>
-          </div>
-        )
-      }
+  componentWillUpdate(nextProps, nextState){
+    console.log("Invite Js line 27", nextState);
+    // this.props.groupStateUpdate(this.state.group);
   }
 
+  handleGroupSubmit = (e) => {
+    e.preventDefault();
+    console.log("In Submit Function");
+    this.props.groupStateUpdate(this.state.group);
+  }
+  
 
+  handleChange = event => {
+    var tempArr= [];
+    console.log(event.target);
+    if(this.state.checked === false){
+      tempArr= [...this.state.group, event.target.value]
+      this.setState({ 
+        group: tempArr,
+        checked: true
+      });
+    } else if (this.state.checked === true) {
+      tempArr = [...this.state.group];
+      let index = tempArr.indexOf(event.target.value);
+      tempArr.splice(index, 1);
+      this.setState({
+        group: tempArr,
+        checked: false
+      });
+    }
+    console.log(tempArr);
+  };
+
+  componentDidMount() {
+    API.getUsers()
+    .then((response)=> {
+      this.setState(()=>{
+        return {
+          liveUsers: response.data
+        }
+      })
+    })
+    .catch(err=>console.log(err))
+  }    
+    
+    render(){
+      
+      let users = this.state.liveUsers;
+      console.log(users, "Invite JS");
+      return (
+        <div className='page-body'>
+          <Paper style={styles.Paper}>
+            {/* <button className="btn" onClick={()=>firebase.auth().signOut()}> Sign out!</button> */}
+            <Typography variant='Title'>
+              <img alt="user" width="50px" margin='5px'src={firebase.auth().currentUser.photoURL} />
+              Welcome {firebase.auth().currentUser.displayName}! You are signed in.
+            </Typography> 
+          <br/>
+            <Typography variant='display1'>Invite</Typography>
+          </Paper>
+          <br />
+          <FriendsList
+           users = {this.state.liveUsers}
+           handleChange = {this.handleChange}
+           checked = {this.checked}
+           submit = {this.handleGroupSubmit}
+           />
+        </div>
+      )
+    }
+  }
+
+  //           <Inputs />
+
+  //         </div>
+  //       )
+  //     }
+  // }
 export default Invite;

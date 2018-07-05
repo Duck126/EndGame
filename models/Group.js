@@ -1,9 +1,18 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const shortid = require("shortid");
 
-const group = new Schema({
-    users: [{
-        type: Schema.Types.ObjectId,
-        ref: "User"
-    }]
+const Group = new Schema({
+   creator:{type:String, required: true},
+   invited:{type:Schema.Types.Array},
+   urlId:{type:String, default: shortid.generate()},
+   centerLoc: {
+       Lat:{type:Schema.Types.Decimal128},
+       Lng:{type:Schema.Types.Decimal128},
+    },
+    
 });
+
+const Group= mongoose.model("Group", groupSchema);
+
+module.exports = Group;

@@ -4,8 +4,8 @@ import firebase from "firebase";
 import API from "../../utils/API";
 
 class Map extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       center:{
         lat: 0,
@@ -23,7 +23,7 @@ class Map extends Component {
       this.setState({
         center:{
           lat: location.coords.latitude,
-        lng: location.coords.longitude,
+          lng: location.coords.longitude,
         }
       });
       this.updateLocation()

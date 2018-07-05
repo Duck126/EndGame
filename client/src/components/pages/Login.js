@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import {BrowserRouter as Router, Route} from "react-router-dom"
-// import Paper from '@material-ui/core/Paper';
+import {BrowserRouter as Router, Route} from "react-router-dom";
+import Paper from "@material-ui/core/Paper";
 import Home from "./Home";
 import Invite from "./Invite";
 import Result from "./Result";
@@ -14,8 +14,6 @@ import { Paper, Typography, Grid } from "@material-ui/core";
 // console.log("Hello",FB.api);
 
 firebase.initializeApp({
-  // apiKey: keys.FB.api,
-  // authDomain: keys.FB.auth
   apiKey: "AIzaSyDYTXe8VuIi0gdZVfI1V1kHpJ2N9Xj23-I",
  authDomain: "endgame-1529521978924.firebaseapp.com"
 })
@@ -26,19 +24,18 @@ const styles = {
     width: 300, 
     margin: 'auto', 
     paddingTop: 30
-
-
   },
 }
 
 class Login extends Component {
   state = {
     isSignedIn: false,
-    user: {}
+    user: {},
+    groupList: []
   }
   uiConfig = {
     signInFlow: "popup",
-    signInSuccessUrl:"http://localhost:3000",
+    signInSuccessUrl: window.location,
     signInOptions: [
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       firebase.auth.FacebookAuthProvider.PROVIDER_ID,
@@ -73,8 +70,6 @@ class Login extends Component {
       }
   }
 
-  
-
     // loadUsers = () => {
     //   API.getUsers()
     //   .then(res =>
@@ -82,6 +77,20 @@ class Login extends Component {
     //   )
     //   .catch(err => console.log(err));
     // }
+
+    componentWillUpdate(nextProps, nextState) {
+      console.log(nextState.groupList);
+    }
+
+    groupStateUpdate= (groupValue) =>{
+      this.setState({groupList: [...groupValue]});
+      console.log(this.state.groupList);
+    }
+
+    //To Do: Pass group to the Result Page as
+
+    
+
     render(){
       return (
         <div className="App">
@@ -91,7 +100,9 @@ class Login extends Component {
           <div>
             <Navbar />
             <Route  exact path="/" component={Home} />
-            <Route exact path="/invite" component={Invite} />
+            <Route exact path="/invite" 
+            component={() => <Invite group={this.state.groupList} groupStateUpdate={this.groupStateUpdate}/>}
+            />
             <Route exact path="/result" component={Result} />
           </div>
         </Router>
