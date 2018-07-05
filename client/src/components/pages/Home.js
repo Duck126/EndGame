@@ -5,7 +5,7 @@ import firebase from "firebase";
 //import keys from "../../keys";
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-//import  Map from "./../maps/map.js";
+import  Map from "./../maps/map.js";
 import './PageBody.css';
 
 
@@ -24,10 +24,10 @@ class Home extends Component {
 
             <Typography className='Title'>
               <img alt="user" width="50px" margin='5px' src={firebase.auth().currentUser.photoURL}/>
-             <p> Welcome {firebase.auth().currentUser.displayName}! You are signed in.</p>
+             <p>  {firebase.auth().currentUser.displayName}</p>
             </Typography> 
             <br/>
-
+            <Map />
             <Typography variant="display1">
             </Typography>
           </Paper>
