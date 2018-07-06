@@ -1,10 +1,9 @@
 import React, {Component} from "react";
 import firebase from "firebase";
-//import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 //import keys from "../../keys";
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-//import  Map from "./../maps/map.js";
+import  Map from "./../maps/map.js";
 import './PageBody.css';
 
 
@@ -33,7 +32,7 @@ class Home extends Component {
 
           <br />
 
-          {/* <Map style={styles.Map}/> */}
+          <Map style={styles.Map}/>
 
       </div>
     )

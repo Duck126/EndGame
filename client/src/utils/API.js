@@ -15,5 +15,8 @@ export default {
   },
   updateLocation: function(userData){
     return axios.put("/api/users/updateLocation", userData)
+  },
+  findOne: function(userData){
+    return axios.get("/api/user", userData);
   }
 };

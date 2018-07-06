@@ -34,8 +34,13 @@ module.exports = {
         .findOneAndUpdate({"email":req.body.email}, { $set: {"Lat":req.body.Lat,"Lng":req.body.Lng }})
         .then(dbModel => res.send("location updated"))
         .catch(err => res.status(422).json(err));
+    },
+    findOne: function(req, res){
+      db
+        .findOne({"email": req.body.email})
+        .then(data => res.json(data))
+        .catch(err => res.status(422).json(err));
     }
-
   };
 
   

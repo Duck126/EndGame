@@ -24,16 +24,32 @@ class Invite extends Component {
     };
   };
 
+  
+
   componentWillUpdate(nextProps, nextState){
     console.log("Invite Js line 27", nextState);
+    //getGroupLocation(group);
     // this.props.groupStateUpdate(this.state.group);
   }
 
   handleGroupSubmit = (e) => {
     e.preventDefault();
     console.log("In Submit Function");
-    this.props.groupStateUpdate(this.state.group);
+    //this.props.groupStateUpdate(this.state.group);
+    this.getGroupLocation(this.state.group);
   }
+
+  getGroupLocation = (group) => {
+    //group = this.state.group;
+    group.map((item, index) => {
+      console.log(item);
+      API.findOne({email:item + ""})
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err))
+    })
+  };
   
 
   handleChange = event => {
@@ -55,7 +71,7 @@ class Invite extends Component {
       });
     }
     console.log(tempArr);
-    console.log(this.state.group);
+    //console.log(this.state.group);
   };
 
   componentDidMount() {

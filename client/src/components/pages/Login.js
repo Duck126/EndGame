@@ -99,9 +99,7 @@ class Login extends Component {
           <div>
             <Navbar />
             <Route  exact path="/" component={Home} />
-            <Route exact path="/invite" 
-            component={() => <Invite group={this.state.groupList} groupStateUpdate={this.groupStateUpdate}/>}
-            />
+            <Route exact path="/invite" component={Invite}/>
             <Route exact path="/result" component={Result} />
           </div>
         </Router>
