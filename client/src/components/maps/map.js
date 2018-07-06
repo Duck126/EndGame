@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { withGoogleMap, GoogleMap,Marker} from 'react-google-maps';
+import { withGoogleMap, GoogleMap, Marker, DirectionsRenderer} from 'react-google-maps';
 import firebase from "firebase";
 import API from "../../utils/API";
 
+const google = window.google;
 class Map extends Component {
   constructor(props) {
     super(props);
@@ -11,6 +12,7 @@ class Map extends Component {
         lat: 0,
       lng: 0,
       },
+      directions: [],
       isSignedIn: true,
       user: firebase.auth().currentUser
       }
@@ -19,16 +21,36 @@ class Map extends Component {
   componentDidMount() {
     console.log('component did mount fired');
     navigator.geolocation.getCurrentPosition((location) => {
-      console.log(location);
       this.setState({
         center:{
           lat: location.coords.latitude,
           lng: location.coords.longitude,
         }
       });
+     
       this.updateLocation()
     });
+
+    //this is to give directions for the person
+    // Error result only returns object
+    const DirectionsService = new google.maps.DirectionsService();
+    DirectionsService.route({
+      origin: new google.maps.LatLng( 31.2672, 98.7431),
+      destination: new google.maps.LatLng(30.2672, 97.7431),
+      travelMode: google.maps.TravelMode.DRIVING,
+    }, (result, status) => {
+      if ( status === google.maps.DirectionsStatus.OK) {
+        this.setState({
+          directions: result
+        });
+        console.log(`you got that shit ${result}`)
+      } else {
+        console.log(`error fetching directions ${result, status}`)
+      }
+    })
   }
+
+ 
 
   updateLocation = ()=>{
     if(firebase.auth().currentUser){
@@ -39,8 +61,6 @@ class Map extends Component {
       }
 
   }
-
-  
   
   render() {
    const GoogleMapExample = withGoogleMap(props => (
@@ -49,6 +69,7 @@ class Map extends Component {
         defaultZoom = { 14 }
         options={{ streetviewcontrol: false, mapTypeControl: true}}
       >
+    {<Marker position={this.state.center } />&& <DirectionsRenderer directions={this.state.center} />}
       {<Marker position={this.state.center } />}
       </GoogleMap>
    ));
