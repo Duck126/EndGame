@@ -6,6 +6,8 @@ import TimePicker from "../TimePicker";
 import { Paper, Typography, Grid } from "@material-ui/core";
 import "./PageBody.css";
 import API from "../../utils/API";
+import getLatLngCenter from "../Algorithm.js";
+// import { get } from "mongoose";
 
 const styles = {
   Paper: { padding: 20, width: 600, margin: 'auto' },
@@ -18,9 +20,10 @@ class Invite extends Component {
       isSignedIn: true,
       user: {},
       group: [],
-      checked: false || true,
+      checked: false,
       liveUsers: [],
-      handleChange: this.handleChange
+      handleChange: this.handleChange,
+      calculatedCenter: null
     };
   };
 
@@ -32,21 +35,34 @@ class Invite extends Component {
   handleGroupSubmit = (e) => {
     e.preventDefault();
     console.log("In Submit Function");
-    let array = [...this.state.group];
-    API.groupLocation({"eamil": {$in: array}})
+    let array = this.state.group;
+
+    API.groupLocation({ group: array })
     .then(res => {
+      console.log("we are back after getting data",res.data)
       let coords = [];
-      for (var i=0; i <= res.data.length; i++){
+      for (let i=0; i < res.data.length; i++){
         let individualCoords = [];
-        let lat = res.data[i].Lat.$numberDecimal;
-        let lng = res.data[i].Lng.$numberDecimal;
-        individualCoords.push(lat);
-        individualCoords.push(lng);
+
+        let latInd = parseFloat(res.data[i].Lat.$numberDecimal);
+        let lngInd = parseFloat(res.data[i].Lng.$numberDecimal);
+        individualCoords.push(latInd);
+        individualCoords.push(lngInd);
         coords.push(individualCoords);
         console.log("Hello Coords",coords);
       }
-      return(coords)
+      // return(coords)
+      const result = getLatLngCenter(coords);
+      console.log("this is the result",result);
+
+      // const secondResult = myNextFunction(result);
+      // const thirdResult = myOtherFunction(result);
+      this.setState({
+        calculatedCenter: result
+      });
     })
+    // .then(coords => getLatLngCenter(coords))
+    // .then(data => console.log("this is the result", data))
     .catch(err => console.log(err))
    
   }

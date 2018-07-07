@@ -36,9 +36,9 @@ module.exports = {
         .catch(err => res.status(422).json(err));
     },
     groupLocation: function(req,res){
-      console.log("get the group Location", req.body)
+      console.log(req.query)
       db
-        .find({})
+        .find({'email':{$in:req.query.group}})
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err))
     }

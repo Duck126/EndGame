@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withGoogleMap, GoogleMap, Marker, DirectionsRenderer,} from 'react-google-maps';
 import firebase from "firebase";
-import API from "../../utils/API";
+// import API from "../../utils/API";
 
 const google = window.google;
 class Map extends Component {
@@ -75,7 +75,7 @@ directionMaker = (center) =>{
   render() {
    const GoogleMapExample = withGoogleMap(props => (
       <GoogleMap
-        defaultCenter={{ lat: this.state.center.lat, lng: this.state.center.lng }}
+        defaultCenter={{ lat: this.props.center.lat, lng: this.props.center.lng }}
         defaultZoom = { 14 }
         options={{ streetviewcontrol: false, mapTypeControl: true}}
       >
@@ -85,15 +85,19 @@ directionMaker = (center) =>{
       </GoogleMap>
    ));
 
-   return(
-      <div style={{ height: '100vh', width: '100%' }}>
-        <GoogleMapExample
-          containerElement={ <div style={{ height: `100%`, width: '100%' }} /> }
-          mapElement={ <div style={{ height: '100%' }} /> }
-        />
-        {/* <button onClick={() => console.log(this.state)}>click me</button> */}
-      </div>
-   );
+   if (this.state.center === null) {
+     return (<div>Loading...</div>);
+   } else {
+      return(
+          <div style={{ height: '100vh', width: '100%' }}>
+            <GoogleMapExample
+              containerElement={ <div style={{ height: `100%`, width: '100%' }} /> }
+              mapElement={ <div style={{ height: '100%' }} /> }
+            />
+            {/* <button onClick={() => console.log(this.state)}>click me</button> */}
+          </div>
+      );
    }
-};
+}
+}
 export default Map;

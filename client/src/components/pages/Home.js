@@ -6,6 +6,7 @@ import firebase from "firebase";
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import  Map from "./../maps/map.js";
+import API from "../../utils/API";
 import './PageBody.css';
 
 
@@ -15,6 +16,41 @@ const styles = {
 };
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      center:{
+        lat: 0,
+        lng: 0,
+      },
+      isSignedIn: true,
+      user: firebase.auth().currentUser
+      }
+  }
+
+  componentDidMount() {
+    console.log('component did mount fired');
+    navigator.geolocation.getCurrentPosition((location) => {
+      console.log(location);
+      this.setState({
+        center:{
+          lat: location.coords.latitude,
+        lng: location.coords.longitude,
+        }
+      });
+      this.updateLocation()
+    });
+  }
+
+  updateLocation = ()=>{
+    if(firebase.auth().currentUser){
+        console.log("we are inside if userAuth");
+        API.updateLocation({email:firebase.auth().currentUser.email,Lat:this.state.center.lat,Lng: this.state.center.lng })
+        .then(res => console.log("location updated"))
+        .catch(err => console.log(err));
+      }
+
+  }
 
   render (){
     return (
@@ -38,7 +74,7 @@ class Home extends Component {
 
         <br /> 
 
-        <Map style={styles.Map}/>
+        <Map center={this.state.center} style={styles.Map}/>
 
       </div>
     )
