@@ -18,14 +18,14 @@ class Invite extends Component {
       isSignedIn: true,
       user: {},
       group: [],
-      checked: false || true,
+      checked: false,
       liveUsers: [],
       handleChange: this.handleChange
     };
   };
 
   componentWillUpdate(nextProps, nextState){
-    console.log("Invite Js line 27", nextState.group);
+    //console.log("Invite Js line 27", nextState.group);
     // this.props.groupStateUpdate(this.state.group);
   }
 
