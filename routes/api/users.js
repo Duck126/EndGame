@@ -9,5 +9,7 @@ router.route("/")
 
   router.route("/updateLocation").put(usersController.updateLocation);
 
+  router.route("/groupLocation").get(usersController.groupLocation);
+
 
 module.exports = router;

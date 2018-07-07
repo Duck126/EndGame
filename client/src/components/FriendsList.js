@@ -2,8 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 import InviteButton from './InviteButton';
 import List from '@material-ui/core/List';
 import FormGroup from '@material-ui/core/FormGroup';
@@ -50,7 +49,7 @@ function FriendsList (props){
             Your Available Friends:
         </Typography>
             <div className=/*{classes.demo}*/'valueD'>
-              <form onSubmit={props.submit}>
+            <form onSubmit={props.submit}>
                     <List /*dense={dense}*/ className='valueK'>
                     
                       <FormControl component="fieldset"> 
@@ -77,8 +76,8 @@ function FriendsList (props){
                       </button> */}
                       </FormControl>
                   </List>
-                 </form> 
-            </div>
+                 </form>
+                  </div>
       </Paper>
     </div>
     )
