@@ -1,5 +1,4 @@
-import React, { Component }from 'react';
-import List from '@material-ui/core/List';
+import React from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -33,9 +32,9 @@ function FriendListItem (props){
         <FormControlLabel
         control={
             <Checkbox
-                checked={props.checked}
-                onClick={props.handleChange}
-                value={props.email}
+            checked={props.checked}
+            onChange={props.handleChange}
+            value={props.email}
             />
         }
             label="Invite"

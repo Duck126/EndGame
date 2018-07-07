@@ -9,6 +9,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FriendsListItem from './FriendListItem';
+import TextField from '@material-ui/core/TextField';
 
 
 const styles = {

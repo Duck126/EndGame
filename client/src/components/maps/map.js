@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withGoogleMap, GoogleMap, Marker, DirectionsRenderer} from 'react-google-maps';
+import { withGoogleMap, GoogleMap, Marker, DirectionsRenderer,} from 'react-google-maps';
 import firebase from "firebase";
 import API from "../../utils/API";
 
@@ -18,39 +18,49 @@ class Map extends Component {
       }
   }
 
+
   componentDidMount() {
     console.log('component did mount fired');
     navigator.geolocation.getCurrentPosition((location) => {
+      var center = {
+        lat: location.coords.latitude,
+        lng: location.coords.longitude,
+      }
       this.setState({
-        center:{
+        center: {
           lat: location.coords.latitude,
           lng: location.coords.longitude,
         }
       });
+
+      this.directionMaker(center);
      
       this.updateLocation()
     });
 
     //this is to give directions for the person
     // Error result only returns object
-    const DirectionsService = new google.maps.DirectionsService();
-    DirectionsService.route({
-      origin: new google.maps.LatLng( 31.2672, 98.7431),
-      destination: new google.maps.LatLng(30.2672, 97.7431),
-      travelMode: google.maps.TravelMode.DRIVING,
-    }, (result, status) => {
-      if ( status === google.maps.DirectionsStatus.OK) {
-        this.setState({
-          directions: result
-        });
-        console.log(`you got that shit ${result}`)
-      } else {
-        console.log(`error fetching directions ${result, status}`)
-      }
-    })
-  }
 
- 
+
+  }//component did mount end
+
+directionMaker = (center) =>{
+  const DirectionsService = new google.maps.DirectionsService();
+  DirectionsService.route({
+    origin: center,
+    destination: new google.maps.LatLng(30.2672, -97.7431),
+    travelMode: google.maps.TravelMode.DRIVING,
+  }, (result, status) => {
+    if ( status === google.maps.DirectionsStatus.OK) {
+      this.setState({
+        directions:  result
+      });
+      console.log(`you got that shit ${result}`)
+    } else {
+      console.log(`error fetching directions ${result, status}`)
+    }
+  })
+}
 
   updateLocation = ()=>{
     if(firebase.auth().currentUser){
@@ -69,8 +79,9 @@ class Map extends Component {
         defaultZoom = { 14 }
         options={{ streetviewcontrol: false, mapTypeControl: true}}
       >
-    {<Marker position={this.state.center } />&& <DirectionsRenderer directions={this.state.center} />}
-      {<Marker position={this.state.center } />}
+
+        { this.state.directions && <DirectionsRenderer directions={this.state.directions} /> }
+        <Marker position={this.state.center} />
       </GoogleMap>
    ));
 
