@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -8,7 +8,8 @@ import Avatars from './Avatars';
 
 
 const styles = {
-    ListItem: { background: '#FF5722', text: 'white', width: 560, padding: 10 }
+    ListItem: { background: '#FF5722', text: 'white', width: 560, padding: 10, margin: 3 },
+    Checkbox: { color: '#4DB6AC ', fill: '#4DB6AC' }
 }
 
 
@@ -31,10 +32,12 @@ function FriendListItem (props){
         />
         <FormControlLabel
         control={
-            <Checkbox
-            checked={props.checked}
-            onChange={props.handleChange}
-            value={props.email}
+            <Checkbox 
+                style={styles.Checkbox}
+                unchecked={props.checked}
+                onChange={props.handleChange}
+                value={props.email}
+
             />
         }
             label="Invite"

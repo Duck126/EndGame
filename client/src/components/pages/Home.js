@@ -20,7 +20,7 @@ class Home extends Component {
     return (
       <div className='page-body'>
 
-          <Paper style={styles.Paper}>
+        {/* <Paper style={styles.Paper}>
 
             <Typography className='Title'>
               <img alt="user" width="50px" margin='5px' src={firebase.auth().currentUser.photoURL}/>
@@ -35,6 +35,10 @@ class Home extends Component {
           <br />
 
           {/* <Map style={styles.Map}/> */}
+
+        <br /> */}
+
+        <Map style={styles.Map}/>
 
       </div>
     )
