@@ -5,9 +5,9 @@ import Avatar from '@material-ui/core/Avatar';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import firebase from "firebase";
 import API from "../utils/API";
-import QuickStart from './material-ui-test/QuickStart';
-import { Typography } from "@material-ui/core";
-import UserMenuButton from './material-ui-test/UserMenuButton';
+// import QuickStart from './material-ui-test/QuickStart';
+// import { Typography } from "@material-ui/core";
+// import UserMenuButton from './material-ui-test/UserMenuButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Grid from '@material-ui/core/Grid';
@@ -257,6 +257,22 @@ class Navbar extends Component {
               >
                 {/* Settings */}
                 <GroupIcon style={iconsStyle} />
+              </div>
+            </Link>
+          </MenuItem>
+          <MenuItem onClick={this.handleClose}>
+            <Link  to="/result">
+              <div
+                variant="fab"
+                style={{
+                  margin:2,
+                  alignContent:'center'
+              }}
+                aria-label="edit"
+                className={window.location.pathname === "/result" ? "active nav-link" : "nav-link" }
+              >
+                {/* Settings */}
+                <Public style={iconsStyle} />
               </div>
             </Link>
           </MenuItem>

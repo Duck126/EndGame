@@ -1,6 +1,7 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
+// import Button from '@material-ui/core/Button';
 import InviteButton from './InviteButton';
 import List from '@material-ui/core/List';
 import FormGroup from '@material-ui/core/FormGroup';
@@ -30,27 +31,36 @@ function FriendsList (props){
             Your Available Friends:
         </Typography>
             <div className=/*{classes.demo}*/'valueD'>
-                  <List className='valueK'>
-                    <FormControl component="fieldset">
-                    <FormLabel component="legend"></FormLabel>
-                    <FormGroup>
-                      {props.users.map((item, index ) => (
-                        <FriendsListItem 
-                        key = {item._id}
-                        photoURL={item.photoURL}
-                        userName={item.userName}
-                        email={item.email}
-                        online={item.isSignedIn}
-                        checked={props.handleChange}
-                        >
-                        </FriendsListItem>
-                      ))}
-                    </FormGroup>
-                    </FormControl>
+            <form onSubmit={props.submit}>
+                    <List /*dense={dense}*/ className='valueK'>
+                    
+                      <FormControl component="fieldset"> 
+                      <FormLabel component="legend">Meet UP Instance</FormLabel>
+                      <FormGroup>
+                        {props.users.map((item, index) => (
+                          <FriendsListItem 
+                          key = {item._id}
+                          photoURL={item.photoURL}
+                          userName={item.userName}
+                          email={item.email}
+                          online={item.isSignedIn}
+                          checked={props.checked}
+                          handleChange={props.handleChange}
+                          >
+                          </FriendsListItem>
+                        ))}
+                      </FormGroup>
+                      <InviteButton/>
+                      {/* <button 
+                      type= "submit"
+                      >
+                      Submit
+                      </button> */}
+                      </FormControl>
                   </List>
 
                   </div>
-          <InviteButton />
+
       </Paper>
 
     )
