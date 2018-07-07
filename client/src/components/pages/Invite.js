@@ -32,6 +32,22 @@ class Invite extends Component {
   handleGroupSubmit = (e) => {
     e.preventDefault();
     console.log("In Submit Function");
+    let array = [...this.state.group];
+    API.groupLocation({"eamil": {$in: array}})
+    .then(res => {
+      let coords = [];
+      for (var i=0; i <= res.data.length; i++){
+        let individualCoords = [];
+        let lat = res.data[i].Lat.$numberDecimal;
+        let lng = res.data[i].Lng.$numberDecimal;
+        individualCoords.push(lat);
+        individualCoords.push(lng);
+        coords.push(individualCoords);
+        console.log("Hello Coords",coords);
+      }
+      return(coords)
+    })
+    .catch(err => console.log(err))
    
   }
   
