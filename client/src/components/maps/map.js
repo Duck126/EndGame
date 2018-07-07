@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withGoogleMap, GoogleMap, Marker, DirectionsRenderer,} from 'react-google-maps';
 import firebase from "firebase";
-// import API from "../../utils/API";
+import API from "../../utils/API";
 
 const google = window.google;
 class Map extends Component {
@@ -9,6 +9,10 @@ class Map extends Component {
     super(props);
     this.state = {
       center:{
+        lat: 0,
+      lng: 0,
+      },
+      destination:{
         lat: 0,
       lng: 0,
       },
@@ -26,29 +30,35 @@ class Map extends Component {
         lat: location.coords.latitude,
         lng: location.coords.longitude,
       }
+      var destination= {
+        lat: 30.2672, 
+        lng: -97.7431,
+      }
       this.setState({
         center: {
           lat: location.coords.latitude,
           lng: location.coords.longitude,
+        },
+        
+        //this is where our destination will be implimented
+        destination: {
+          lat: 30.2672, 
+          lng: -97.7431,
         }
       });
 
-      this.directionMaker(center);
+      this.directionMaker(center, destination);
      
       this.updateLocation()
     });
 
-    //this is to give directions for the person
-    // Error result only returns object
-
-
   }//component did mount end
 
-directionMaker = (center) =>{
+directionMaker = (center, destination) =>{
   const DirectionsService = new google.maps.DirectionsService();
   DirectionsService.route({
     origin: center,
-    destination: new google.maps.LatLng(30.2672, -97.7431),
+    destination: destination,
     travelMode: google.maps.TravelMode.DRIVING,
   }, (result, status) => {
     if ( status === google.maps.DirectionsStatus.OK) {
@@ -60,6 +70,11 @@ directionMaker = (center) =>{
       console.log(`error fetching directions ${result, status}`)
     }
   })
+}
+
+
+searchBoxMaker = () =>{
+
 }
 
   updateLocation = ()=>{

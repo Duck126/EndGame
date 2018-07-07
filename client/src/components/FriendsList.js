@@ -58,8 +58,8 @@ function FriendsList (props){
                       </button> */}
                       </FormControl>
                   </List>
-
-                  </div>
+              </form>
+            </div>
 
       </Paper>
 

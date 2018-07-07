@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import firebase from "firebase";
-import { Paper, Typography } from '@material-ui/core';
 import  Map from "./../maps/map.js";
 import './PageBody.css';
 import { Paper, Typography, Grid } from "@material-ui/core";

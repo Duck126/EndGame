@@ -99,7 +99,7 @@ class Invite extends Component {
     //console.log(this.state.group);
   };
 
-  componentDidMount() {
+  componentDidMount(){
     API.getUsers()
     .then((response)=> {
       this.setState(()=>{
