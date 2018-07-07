@@ -36,7 +36,7 @@ class Home extends Component {
 
           {/* <Map style={styles.Map}/> */}
 
-        <br /> */}
+        <br /> 
 
         <Map style={styles.Map}/>
 

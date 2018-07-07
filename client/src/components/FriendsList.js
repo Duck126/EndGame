@@ -24,7 +24,7 @@ function FriendsList (props){
   
     return (
       
-    <div className='page-body'> 
+
       <Paper style={styles.Paper}>
         <Typography variant="title">
             Your Available Friends:
@@ -48,11 +48,11 @@ function FriendsList (props){
                     </FormGroup>
                     </FormControl>
                   </List>
-                 </form>
+
                   </div>
           <InviteButton />
       </Paper>
-    </div>
+
     )
 }
 
