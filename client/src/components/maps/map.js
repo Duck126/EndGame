@@ -2,20 +2,19 @@ import React, { Component } from 'react';
 import { withGoogleMap, GoogleMap, Marker, DirectionsRenderer,} from 'react-google-maps';
 import firebase from "firebase";
 import API from "../../utils/API";
+import SearchBox from 'react-google-maps/lib/components/places/SearchBox';
 
 const google = window.google;
 class Map extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      center:{
-        lat: 0,
-      lng: 0,
-      },
+      center: this.props.center,
       destination:{
         lat: 0,
       lng: 0,
       },
+      bounds: null,
       directions: [],
       isSignedIn: true,
       user: firebase.auth().currentUser
@@ -30,16 +29,19 @@ class Map extends Component {
         lat: location.coords.latitude,
         lng: location.coords.longitude,
       }
+
+      //this is where our destination will be implimented
       var destination= {
         lat: 30.2672, 
         lng: -97.7431,
       }
+
       this.setState({
         center: {
           lat: location.coords.latitude,
           lng: location.coords.longitude,
         },
-        
+
         //this is where our destination will be implimented
         destination: {
           lat: 30.2672, 
@@ -48,7 +50,9 @@ class Map extends Component {
       });
 
       this.directionMaker(center, destination);
-     
+
+      this.searchBoxMaker()
+
       this.updateLocation()
     });
 
@@ -64,8 +68,7 @@ directionMaker = (center, destination) =>{
     if ( status === google.maps.DirectionsStatus.OK) {
       this.setState({
         directions:  result
-      });
-      console.log(`you got that shit ${result}`)
+      })
     } else {
       console.log(`error fetching directions ${result, status}`)
     }
@@ -74,7 +77,44 @@ directionMaker = (center, destination) =>{
 
 
 searchBoxMaker = () =>{
+  const refs = {  }
 
+  this.setState({
+    bounds: null,
+    oonMapMounted: ref => {
+      refs.map = ref;
+    },
+
+    onBoundsChanged: () => {
+      this.setState({
+        bounds: refs.map.getBounds()
+      })
+    },
+    onSearchBoxMounted: ref => {
+      refs.searchBox = ref;
+    },
+    onPlacesChanged: () => {
+      const places = refs.searchBox.getPlaces();
+      const bounds = new google.map.LatLngBounds();
+      places.forEach(place =>{
+        if (place.geometry.viewport) {
+          bounds.union(place.geometry.location)
+        } else {
+          bounds.extend(place.geometry.location)
+        }
+      });
+
+      const nextMarkers = places.map(place=>({
+        position: place.geometry.location,
+      }));
+
+      this.setState({
+        markers: nextMarkers,
+      })
+
+    }, //onPlacesChanged 
+
+  })
 }
 
   updateLocation = ()=>{
@@ -94,6 +134,33 @@ searchBoxMaker = () =>{
         defaultZoom = { 14 }
         options={{ streetviewcontrol: false, mapTypeControl: true}}
       >
+
+      <SearchBox
+        ref={props.onSearchBoxMounted}
+        bounds={props.center}
+        controlPosition={google.maps.ControlPosition.TOP_LEFT}
+        onPlacesChanged={props.onPlacesChanged}
+      >
+        <input 
+        type="text"
+        placeholdder="Search for that Coffee"
+        placeholder="Customized your placeholder"
+        style={{
+          boxSizing: `border-box`,
+          border: `1px solid transparent`,
+          width: `240px`,
+          height: `32px`,
+          padding: `0 12px`,
+          borderRadius: `3px`,
+          boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
+          fontSize: `14px`,
+          outline: `none`,
+          textOverflow: `ellipses`,
+        }}
+        />
+      </SearchBox>
+
+      
 
         { this.state.directions && <DirectionsRenderer directions={this.state.directions} /> }
         <Marker position={this.state.center} />
