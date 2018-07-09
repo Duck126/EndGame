@@ -115,7 +115,11 @@ searchBoxMaker = () =>{
     }, //onPlacesChanged 
 
   })
-}
+
+  //state isnt being update after we render the places
+  console.log(this.state)
+
+}//searchbox
 
   updateLocation = ()=>{
     if(firebase.auth().currentUser){
@@ -143,8 +147,7 @@ searchBoxMaker = () =>{
       >
         <input 
         type="text"
-        placeholdder="Search for that Coffee"
-        placeholder="Customized your placeholder"
+        placeholder="Search for that Coffee"
         style={{
           boxSizing: `border-box`,
           border: `1px solid transparent`,
