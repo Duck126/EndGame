@@ -5,6 +5,14 @@ import Avatar from '@material-ui/core/Avatar';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import firebase from "firebase";
 import API from "../utils/API";
+// import QuickStart from './material-ui-test/QuickStart';
+// import { Typography } from "@material-ui/core";
+// import UserMenuButton from './material-ui-test/UserMenuButton';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Grid from '@material-ui/core/Grid';
+
+
 
 const iconsStyle ={
   color: 'black',
@@ -14,19 +22,21 @@ const iconsStyle ={
 };
 
 const styles = {
- 
   bigAvatar: {
     width: 60,
     height: 60,
   },
 };
 
+// const buttonStyle = {
+//   justifyContent: 'end'
+// }
+
 function HomeIcon(props) {
   return (
     <SvgIcon {...props}>
       <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
     </SvgIcon>
-    
   );
 }
 
@@ -57,11 +67,11 @@ function User(props){
 function Logout(props){
   return (
     <SvgIcon {...props}>
-      <path d=  "M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
- size="100%" />
+      <path d=  "M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" size="100%" />
     </SvgIcon>
   )
 }
+
 
 
 class Navbar extends Component {
@@ -69,6 +79,7 @@ class Navbar extends Component {
   state = { 
       isSignedIn: true,
       user: firebase.auth().currentUser,
+      anchorEl:null,
   }
 
   // componentDidMount() {
@@ -86,56 +97,209 @@ class Navbar extends Component {
   // }
 
 
-handleSignOut = () =>{
-  if(firebase.auth().currentUser){
-    API.updateSignIn({email:firebase.auth().currentUser.email})
-    .then(res => console.log("state updated"))
-    .then(()=>firebase.auth().signOut())
-        .catch(err => console.log(err));
+  handleClick = event => {
+      this.setState({anchorEl: event.currentTarget });
+  };
+
+  handleClose = () => {
+      this.setState({ anchorEl: null });
+  };
+
+
+  handleSignOut = () =>{
+    if(firebase.auth().currentUser){
+      API.updateSignIn({email:firebase.auth().currentUser.email})
+      .then(res => console.log("state updated"))
+      .then(()=>firebase.auth().signOut())
+          .catch(err => console.log(err));
+    }
   }
-  
-}
 
   render(){
+    const {anchorEl} = this.state;
+    
     return (
-      <div className="menuButtons" style={{ width:"fit-content", margin: "auto", display:"block" }} >
-      
-      <Button variant="fab" style={{margin:2, alignContent:'center' }} aria-label="edit" className="active nav-link">
-       
-         <User style={iconsStyle} src={firebase.auth().currentUser.photoURL}/>
-     </Button>
+      <div
+        className="menuButtons"
+        style={{
+          // width:"fit-content",
+          // margin: "auto",
+          // display:"block",
+          // justifyContent: "flex-end"
+          // buttonStyle
+        }}
+      >
 
-     <Link to="/">
-       <Button variant="fab" style={{ margin:2, alignContent:'center' }} aria-label="edit" className={window.location.pathname === "/" ? "active nav-link" : "nav-link" }>
-           <HomeIcon style={iconsStyle}/>
-       </Button>
-     </Link>
+        {/* <UserMenuButton /> */}
 
-     <Link to="/invite">
-       <Button variant="fab" style={{ margin:2, alignContent:'center' }} aria-label="edit" className={window.location.pathname === "/invite" ? "active nav-link" : "nav-link" }  >
-           <GroupIcon style={iconsStyle} />
-       </Button>
-     </Link>
+      <Grid
+        container
+        spacing={24}
+        justify="space-between"
+      >
+      <Grid item xs={3}>
+        <Link to="/">
+          <Button
+            variant='text'
+            color='primary'
+            style={{
+              margin:2,
+              alignContent:'center',
+              // justifyContent:'end'
+            }}
+            aria-label="edit"
+            className={window.location.pathname === "/" ? "active nav-link" : "nav-link" }
+          >
+            <span> End Game </span>
+          </ Button>
+        </Link>
+      </Grid>
+        {/* <Grid item xs={6}>
+        </Grid> */}
 
-     <Link to="/result">
-       <Button variant="fab" style={{ margin:2, alignContent:'center' }} aria-label="add" className={window.location.pathname === "/result" ? "active nav-link" : "nav-link"}>
-           <Public style={iconsStyle} />
-       </Button>
-     </Link>  
+        {/* <Link to="/">
+          <Button
+            variant="fab"
+            style={{ margin:2, alignContent:'center' }}
+            aria-label="edit"
+            className={window.location.pathname === "/" ? "active nav-link" : "nav-link" }
+          >
+            <HomeIcon style={iconsStyle}/>
+          </Button>
+        </Link> */}
 
-     <Link onClick={()=>this.handleSignOut()} to="/">
-         <Button variant="fab" style={{ margin:2, alignContent:'center' }} aria-label="edit" className={window.location.pathname === "/" ? "active nav-link" : "nav-link" }  >
-             <Logout style={iconsStyle}/>
-         </Button>
-       </Link>
-  
-  
-      </div>
-      
+        {/* <Link to="/invite">
+          <Button
+            variant="fab"
+            style={{
+              margin:2,
+              alignContent:'center'
+            }}
+            aria-label="edit"
+            className={window.location.pathname === "/invite" ? "active nav-link" : "nav-link" }
+          >
+            <GroupIcon style={iconsStyle} />
+          </Button>
+        </Link> */}
+
+        {/* <Link to="/result">
+          <Button variant="fab" style={{ margin:2, alignContent:'center' }} aria-label="add" className={window.location.pathname === "/result" ? "active nav-link" : "nav-link"}>
+              <Public style={iconsStyle} />
+          </Button>
+        </Link>   */}
+
+        {/* <Link onClick={()=>this.handleSignOut()} to="/">
+          <Button
+            variant="fab"
+            style={{ margin:2, alignContent:'center' }}
+            aria-label="edit"
+            className={window.location.pathname === "/" ? "active nav-link" : "nav-link" }
+          >
+            <Logout style={iconsStyle}/>
+          </Button>
+        </Link> */}
+
+          {/* <Button variant="fab" style={{margin:2, alignContent:'center' }} aria-label="edit" className="active nav-link">
+            <User style={iconsStyle} src={firebase.auth().currentUser.photoURL}/>
+        </Button> */}
+      <Grid item xs={3}>
+        <Button
+          aria-owns={anchorEl ? 'simple-menu' : null}
+          aria-haspopup="true"
+          onClick={this.handleClick}
+          variant="fab"
+          style={{
+            margin:2,
+            alignContent:'center', 
+            // justifyContent:'end'
+            // justify:"flex-end"
+            flexBasis: "0"
+
+          }}
+          // className="buttonStyle" 
+          // style={buttonStyle}
+          aria-label="edit"
+          className="active nav-link"
+        >
+          <User style={iconsStyle} src={firebase.auth().currentUser.photoURL}/>
+        </Button>
+        <Menu id="simple-menu"
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={this.handleClose}
+        >
+          <MenuItem onClick={this.handleClose}>
+            <Link  to="/">
+              <div
+                variant="fab"
+                style={{
+                  margin:2,
+                  alignContent:'center'
+                }}
+                aria-label="edit"
+                className={window.location.pathname === "/" ? "active nav-link" : "nav-link" }
+              >
+                {/* Profile */}
+                <HomeIcon style={iconsStyle}/>
+              </div>
+            </Link>
+          </MenuItem>
+          <MenuItem onClick={this.handleClose}>
+            <Link  to="/invite">
+              <div
+                variant="fab"
+                style={{
+                  margin:2,
+                  alignContent:'center'
+              }}
+                aria-label="edit"
+                className={window.location.pathname === "/invite" ? "active nav-link" : "nav-link" }
+              >
+                {/* Settings */}
+                <GroupIcon style={iconsStyle} />
+              </div>
+            </Link>
+          </MenuItem>
+          <MenuItem onClick={this.handleClose}>
+            <Link  to="/result">
+              <div
+                variant="fab"
+                style={{
+                  margin:2,
+                  alignContent:'center'
+              }}
+                aria-label="edit"
+                className={window.location.pathname === "/result" ? "active nav-link" : "nav-link" }
+              >
+                {/* Settings */}
+                <Public style={iconsStyle} />
+              </div>
+            </Link>
+          </MenuItem>
+          <MenuItem onClick={this.handleClose}>
+            <Link onClick={()=>this.handleSignOut()} to="/">
+              <div
+                variant="fab"
+                style={{
+                  margin:2,
+                  alignContent:'center'
+                }}
+                aria-label="edit"
+                className={window.location.pathname === "/" ? "active nav-link" : "nav-link" }
+              >
+                {/* Logout */}
+                <Logout style={iconsStyle}/>
+              </div>
+            </Link>
+          </MenuItem>
+        </Menu>
+      </Grid>
+
+      </Grid>
+      </div> 
+
     )
-
   }
-  
 }
 
 export default Navbar;

@@ -1,11 +1,15 @@
 import React, { Component } from "react";
+import {Redirect} from "react-router";
 import firebase from "firebase";
 import FriendsList from "../FriendsList";
 // import InviteButton from '../InviteButton';
+import Result from './Result';
 import TimePicker from "../TimePicker";
 import { Paper, Typography, Grid } from "@material-ui/core";
 import "./PageBody.css";
 import API from "../../utils/API";
+//import Result from "./Result";
+
 import getLatLngCenter from "../Algorithm.js";
 // import { get } from "mongoose";
 
@@ -23,7 +27,8 @@ class Invite extends Component {
       checked: false,
       liveUsers: [],
       handleChange: this.handleChange,
-      calculatedCenter: null
+      calculatedCenter: null,
+      redirect: false
     };
   };
 
@@ -35,8 +40,8 @@ class Invite extends Component {
   handleGroupSubmit = (e) => {
     e.preventDefault();
     console.log("In Submit Function");
-    let array = [...this.state.group];
-    API.groupLocation({"email": {$in: array}})
+    let array = this.state.group;
+    API.groupLocation({ group: array })
     .then(res => {
       console.log("we are back after getting data",res.data)
       let coords = [];
@@ -57,7 +62,8 @@ class Invite extends Component {
       // const secondResult = myNextFunction(result);
       // const thirdResult = myOtherFunction(result);
       this.setState({
-        calculatedCenter: result
+        calculatedCenter: result,
+        redirect: true
       });
     })
     // .then(coords => getLatLngCenter(coords))
@@ -107,13 +113,19 @@ class Invite extends Component {
     
     render(){
       let users = this.state.liveUsers;
+      const{redirect, calculatedCenter} = this.state
+      if (redirect)
+          return(<Redirect to={{
+            pathname: '/result',
+            state: {calculatedCenter: this.state.calculatedCenter}
+          }} />)
       return (
         <div className='page-body'>
           <Grid container spacing={24}> 
           <Grid item xs={12}> 
               <Paper style={styles.Paper}>
                 {/* <button className="btn" onClick={()=>firebase.auth().signOut()}> Sign out!</button> */}
-                  <Typography variant='Title'>
+                  <Typography variant='title'>
                   <img alt="user" width="50px" margin='5px'src={firebase.auth().currentUser.photoURL} />
                   Welcome {firebase.auth().currentUser.displayName}! You are signed in.
                   </Typography> 

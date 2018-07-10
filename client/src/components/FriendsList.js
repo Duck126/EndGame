@@ -1,5 +1,4 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 // import Button from '@material-ui/core/Button';
@@ -12,8 +11,8 @@ import FriendsListItem from './FriendListItem';
 
 
 const styles = {
-  Paper: { padding: 20, width: 600, margin: 'auto'  },
-  Button: { backgroundColor: '#26C6DA', width: 560 }
+  Paper: { padding: 20, width: 600, margin: 'auto'  }
+  
 }
 
 function FriendsList (props){
@@ -25,7 +24,7 @@ function FriendsList (props){
   
     return (
       <Paper style={styles.Paper}>
-        <Typography variant="title" className=/*{classes.title}*/'valueL'>
+        <Typography variant="title">
             Your Available Friends:
         </Typography>
             <div className=/*{classes.demo}*/'valueD'>
@@ -58,6 +57,7 @@ function FriendsList (props){
                   </List>
                  </form>
                   </div>
+
       </Paper>
 
     )

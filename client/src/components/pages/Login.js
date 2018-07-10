@@ -8,7 +8,7 @@ import Navbar from "../Navbar";
 import firebase from "firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import API from "../../utils/API";
-import { Paper } from '@material-ui/core';
+import Paper from '@material-ui/core/Paper';
 import './PageBody.css';
 // import keys from "../../keys";
 

@@ -53,9 +53,9 @@ render (){
   return (
     <div className='page-body'>
 
-        <Paper style={styles.Paper}>
+        {/* <Paper style={styles.Paper}>
 
-          <Typography variant='Title'>
+          <Typography variant='title'>
             <img alt="user" width="50px" margin='5px' src={firebase.auth().currentUser.photoURL} />
             Welcome {firebase.auth().currentUser.displayName}! You are signed in.
           </Typography> 
@@ -64,7 +64,7 @@ render (){
           <Typography variant='display1'>Home</Typography>
         </Paper>
 
-        <br />
+        <br /> */}
 
         <Map center={this.state.center} style={styles.Map}/>
 
