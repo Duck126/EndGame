@@ -5,6 +5,7 @@ import  Map from "./../maps/map.js";
 import './PageBody.css';
 
 
+
 const styles = {
   Paper: { padding: 20, width: 600, margin: 'auto' },
   Map: { padding: 20, width: 600, margin: 'auto' },
@@ -63,6 +64,7 @@ render (){
           </Paper>
   
           <br />
+          <a target="_blank" href="https://www.google.com/maps/"> Get Directions</a>
   
           <Map center={this.state.center} style={styles.Map}/>
   

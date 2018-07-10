@@ -10,6 +10,7 @@ import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import API from "../../utils/API";
 import Paper from '@material-ui/core/Paper';
 import './PageBody.css';
+import Back from "../Back.js";
 // import keys from "../../keys";
 
 firebase.initializeApp({
@@ -88,6 +89,7 @@ class Login extends Component {
             <Route  exact path="/" component={Home} />
             <Route exact path="/invite" component={Invite} />
             <Route exact path="/result" component={Result} />
+            <Back />
           </div>
         </Router>
           // <div>
