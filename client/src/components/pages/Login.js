@@ -1,34 +1,38 @@
 import React, { Component } from "react";
 import {BrowserRouter as Router, Route} from "react-router-dom"
-import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
-import firebase from "firebase";
-import Navbar from "../Navbar";
+// import Paper from '@material-ui/core/Paper';
 import Home from "./Home";
 import Invite from "./Invite";
 import Result from "./Result";
+import Navbar from "../Navbar";
+import firebase from "firebase";
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import API from "../../utils/API";
 import Paper from '@material-ui/core/Paper';
 import './PageBody.css';
-import Back from "../Back.js";
 // import keys from "../../keys";
-
-
 
 firebase.initializeApp({
   apiKey: "AIzaSyDYTXe8VuIi0gdZVfI1V1kHpJ2N9Xj23-I",
- authDomain: "endgame-1529521978924.firebaseapp.com"
+  authDomain: "endgame-1529521978924.firebaseapp.com"
 })
 
+const styles = {
+  Paper: { 
+    padding: 20, 
+    width: 300, 
+    margin: 'auto', 
+    paddingTop: 30
 
+
+  },
+}
 
 class Login extends Component {
-
   state = {
     isSignedIn: false,
-    user: {},
-    groupList: []
+    user: {}
   }
-
   uiConfig = {
     signInFlow: "popup",
     signInSuccessUrl: window.location,
@@ -58,17 +62,24 @@ class Login extends Component {
           email: firebase.auth().currentUser.email,
           photoURL: firebase.auth().currentUser.photoURL,
           isSignedIn: this.state.isSignedIn,
-          Lat:0,
-          Lng:0
         })
         .then(res=> console.log("user created"))
         .catch(err => console.log(err));
       }
   }
 
-  render(){
-    return (
-      <div className="App">
+  
+
+    // loadUsers = () => {
+    //   API.getUsers()
+    //   .then(res =>
+    //     this.setState({ isSignedIn: true })
+    //   )
+    //   .catch(err => console.log(err));
+    // }
+    render(){
+      return (
+        <div className="App">
         {this.state.isSignedIn ? (
           
         <Router>
@@ -77,7 +88,6 @@ class Login extends Component {
             <Route  exact path="/" component={Home} />
             <Route exact path="/invite" component={Invite} />
             <Route exact path="/result" component={Result} />
-            <Back />
           </div>
         </Router>
           // <div>
@@ -95,47 +105,12 @@ class Login extends Component {
                 firebaseAuth={firebase.auth()}
               />
             </div>
-          </Router>
-        ) : (
-          <Grid
-            container
-            spacing="40"
-            direction="column"
-            alignItems="center"
-            justify="center"
-          >
-          <Grid item></Grid>
-          <Grid item></Grid>
-          <Grid item></Grid>
-          <Grid item></Grid>
-            <Paper>
-              <Grid item>
-                <Grid
-                  container
-                  alignItems="center"
-                  justify="center"
-                > 
-                  <Grid item>
-                    <img
-                      src='./eglogo.png'
-                      width='200'
-                    />
-                  </Grid>
-                </Grid>
-              </Grid>
-              <Grid item>
-                <StyledFirebaseAuth
-                  uiConfig={this.uiConfig}
-                  firebaseAuth={firebase.auth()}
-                />  
-              </Grid>
-            </Paper>
-          </Grid>
-        )}
-      </div>
-    )
+          </Paper>
+         )
+          }
+        </div>
+      )
+    }
   }
-}
-
-export default Login;
-
+  
+  export default Login;
