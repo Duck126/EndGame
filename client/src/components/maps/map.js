@@ -49,77 +49,72 @@ class Map extends Component {
         }
       });
 
-      this.directionMaker(center, destination);
-
-      this.searchBoxMaker()
-
-      this.updateLocation()
+      // this.directionMaker(center, destination);
     });
 
   }//component did mount end
 
-directionMaker = (center, destination) =>{
-  const DirectionsService = new google.maps.DirectionsService();
-  DirectionsService.route({
-    origin: center,
-    destination: destination,
-    travelMode: google.maps.TravelMode.DRIVING,
-  }, (result, status) => {
-    if ( status === google.maps.DirectionsStatus.OK) {
-      this.setState({
-        directions:  result
-      })
-    } else {
-      console.log(`error fetching directions ${result, status}`)
-    }
-  })
-}
+// directionMaker = (center, destination) =>{
+//   const DirectionsService = new google.maps.DirectionsService();
+//   DirectionsService.route({
+//     origin: center,
+//     destination: destination,
+//     travelMode: google.maps.TravelMode.DRIVING,
+//   }, (result, status) => {
+//     if ( status === google.maps.DirectionsStatus.OK) {
+//       this.setState({
+//         directions:  result
+//       })
+//     } else {
+//       console.log(`error fetching directions ${result, status}`)
+//     }
+//   })
+// }
 
 
-searchBoxMaker = () =>{
-  const refs = {  }
+// searchBoxMaker = () =>{
+//   const refs = {  }
 
-  this.setState({
-    bounds: null,
-    oonMapMounted: ref => {
-      refs.map = ref;
-    },
+//   this.setState({
+//     bounds: null,
+//     onMapMounted: ref => {
+//       refs.map = ref;
+//     },
 
-    onBoundsChanged: () => {
-      this.setState({
-        bounds: refs.map.getBounds()
-      })
-    },
-    onSearchBoxMounted: ref => {
-      refs.searchBox = ref;
-    },
-    onPlacesChanged: () => {
-      const places = refs.searchBox.getPlaces();
-      const bounds = new google.map.LatLngBounds();
-      places.forEach(place =>{
-        if (place.geometry.viewport) {
-          bounds.union(place.geometry.location)
-        } else {
-          bounds.extend(place.geometry.location)
-        }
-      });
+//     onBoundsChanged: () => {
+//       this.setState({
+//         bounds: refs.map.getBounds()
+//       })
+//     },
+//     onSearchBoxMounted: ref => {
+//       refs.searchBox = ref;
+//     },
+//     onPlacesChanged: () => {
+//       const places = refs.searchBox.getPlaces();
+//       const bounds = new google.map.LatLngBounds();
+//       places.forEach(place =>{
+//         if (place.geometry.viewport) {
+//           bounds.union(place.geometry.viewport)
+//         } else {
+//           bounds.extend(place.geometry.location)
+//         }
+//       });
 
-      const nextMarkers = places.map(place=>({
-        position: place.geometry.location,
-      }));
+//       const nextMarkers = places.map(place=>({
+//         position: place.geometry.location,
+//       }));
 
-      this.setState({
-        markers: nextMarkers,
-      })
+//       this.setState({
+//         markers: nextMarkers,
+//       })
 
-    }, //onPlacesChanged 
+//     }, //onPlacesChanged 
 
-  })
+//   })
 
-  //state isnt being update after we render the places
-  console.log(this.state)
+//   //state isnt being update after we render the places
 
-}//searchbox
+// }//searchbox
 
   updateLocation = ()=>{
     if(firebase.auth().currentUser){
@@ -139,7 +134,7 @@ searchBoxMaker = () =>{
         options={{ streetviewcontrol: false, mapTypeControl: true}}
       >
 
-      <SearchBox
+      {/* <SearchBox
         ref={props.onSearchBoxMounted}
         bounds={props.center}
         controlPosition={google.maps.ControlPosition.TOP_LEFT}
@@ -165,7 +160,8 @@ searchBoxMaker = () =>{
 
       
 
-        { this.state.directions && <DirectionsRenderer directions={this.state.directions} /> }
+        { this.state.directions && <DirectionsRenderer directions={this.state.directions} /> } */}
+
         <Marker position={this.state.center} />
       </GoogleMap>
    ));
@@ -187,7 +183,7 @@ searchBoxMaker = () =>{
             {/* <button onClick={() => console.log(this.state)}>click me</button> */}
           </div>
       );
-   }
-}
+    }
+  }
 }
 export default Map;

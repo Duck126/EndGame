@@ -1,80 +1,83 @@
 import React, {Component} from "react";
 import firebase from "firebase";
+import { Paper, Typography } from '@material-ui/core';
 import  Map from "./../maps/map.js";
 import './PageBody.css';
-import { Paper, Typography, Grid } from "@material-ui/core";
-import { withGoogleMap, GoogleMap, Marker, DirectionsRenderer,} from 'react-google-maps';
+import SearchBox from 'react-google-maps/lib/components/places/SearchBox';
+import { Marker } from "react-google-maps";
+// import SvgIcon from '@material-ui/core/SvgIcon';
 
+const google = window.google;
 
+// function markerIcon(props){
+//   return (
+
+//   );
+// }
 
 const styles = {
   Paper: { padding: 20, width: 600, margin: 'auto' },
   Map: { padding: 20, width: 600, margin: 'auto' },
 }
 
-const google = window.google;
-
 class Result extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      markers: [],
       center: {
         lat: this.props.location.state ? this.props.location.state.calculatedCenter[0] : null,
         lng: this.props.location.state ? this.props.location.state.calculatedCenter[1] : null
       },
-      start: {
-        lat: 0,
-        lng: 0,
-      },
-      directions: [],
       isSignedIn: true,
-      user: firebase.auth().currentUser
+      user: firebase.auth().currentUser,
       }
   }
 
+  //Bounds: is the area that good maps will search for in that area
+  //Viewport: part of geocoding services 
+
 componentDidMount(){
-  navigator.Geolocation.getCurrentPosition((location)=>{
-    var start = {
-      lat: location.coords.latitude,
-      lng: location.coords.longitude,
-    }
-    var center= {
-      lat: this.props.location.state ? this.props.location.state.calculatedCenter[0] : null,
-      lng: this.props.location.state ? this.props.location.state.calculatedCenter[1] : null
-    }
+const refs = {}
+
+this.setState({
+  bounds: null,
+  center: {
+    lat: this.props.location.state ? this.props.location.state.calculatedCenter[0] : null,
+    lng: this.props.location.state ? this.props.location.state.calculatedCenter[1] : null,
+  },
+  markers: [],
+  onMapMounted: ref => {
     this.setState({
-      start: {
-        lat: location.coords.latitude,
-        lng: location.coords.longitude,
-      },
-      center: {
-        lat: this.props.location.state ? this.props.location.state.calculatedCenter[0] : null,
-        lng: this.props.location.state ? this.props.location.state.calculatedCenter[1] : null
-      },
-    })
-  this.directionMaker(start, center);
+      bounds: refs.map.getBounds()
+    });
+  },
+  onSearchBoxMounted: ref => {
+    refs.SearchBox = ref; 
+  },
+  onPlacesChanged: () => {
+    const places = refs.SearchBox.getPlaces();
+    const bounds = this.center;
+    places.forEach(place => {
+      if (place.geometry.viewport) {
+        bounds.union(place.geometry.viewport)
+      } else {
+        bounds.extend(place.geometry.location)
+      }
+    });
+    const nextMarkers = places.map(place => ({
+      position: place.geometry.location,
+    }));
+    const nextCenter = (nextMarkers, '0.position', this.state.center)
+    this.setState({
+      markers: nextMarkers,
+      center: nextCenter,
+    });
+  }
 
-  });
+}); // setState
 
-}
-
-directionMaker = (start, center) =>{
-  const DirectionsService = new google.maps.DirectionsService();
-  DirectionsService.route({
-    origin: start,
-    destination: center,
-    travelMode: google.maps.TravelMode.DRIVING,
-  }, (result, status) => {
-    if ( status === google.maps.DirectionsStatus.OK) {
-      this.setState({
-        directions:  result
-      })
-    } else {
-      console.log(`error fetching directions ${result, status}`)
-    }
-  })
-}
-
+} //componentWillMount
 
 render (){
   if(this.state.center.lat===null && this.state.center.lng===null){
@@ -90,6 +93,7 @@ render (){
         <br />
 
         <Typography variant='display1'>Result</Typography>
+
       </Paper>
 
       <br />
@@ -101,29 +105,29 @@ render (){
   } else {
     return (
       <div className='page-body'>
-  
           <Paper style={styles.Paper}>
   
             <Typography variant='title'>
               <img alt="user" width="50px" margin='5px' src={firebase.auth().currentUser.photoURL} />
               Welcome {firebase.auth().currentUser.displayName}! You are signed in.
             </Typography> 
-            <br />
+            <br/>
   
             <Typography variant='display1'>Result</Typography>
+
           </Paper>
   
-          <br />
-          <a target="_blank" href="https://www.google.com/maps/"> Get Directions</a>
+          <br/>
   
-          <Map center={this.state.center} style={styles.Map}/>
-  
-        </div>
-    )
+          <Map center={this.state.center} style={styles.Map}>
+            
+              {this.state.markers.map((marker, index)=>
+              <Marker key={index}  position={marker.position} />)}
+          </Map>
+      </div>
+      )
+    }
   }
-  
 }
-}
-
 
 export default Result;
