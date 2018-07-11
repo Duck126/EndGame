@@ -14,7 +14,7 @@ import getLatLngCenter from "../Algorithm.js";
 // import { get } from "mongoose";
 
 const styles = {
-  Paper: { padding: 20, width: 600, margin: 'auto' },
+  Paper: { padding: 20, width: "95vw", margin: 'auto' },
 }
 
 class Invite extends Component { 
@@ -126,10 +126,10 @@ class Invite extends Component {
           <Grid item xs={12}> 
               <Paper style={styles.Paper}>
                 {/* <button className="btn" onClick={()=>firebase.auth().signOut()}> Sign out!</button> */}
-                  <Typography variant='title'>
+                  {/* <Typography variant='title'>
                   <img alt="user" width="50px" margin='5px'src={firebase.auth().currentUser.photoURL} />
                   Welcome {firebase.auth().currentUser.displayName}! You are signed in.
-                  </Typography> 
+                  </Typography>  */}
               <br />
 
             <Typography variant='display1'>Invite</Typography>
@@ -150,7 +150,7 @@ class Invite extends Component {
 
           </Grid>
 
-           <Grid item xs={12}>
+           <Grid item xs={24}>
 
 
           </Grid>

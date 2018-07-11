@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import {BrowserRouter as Router, Route} from "react-router-dom"
-// import Paper from '@material-ui/core/Paper';
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+import firebase from "firebase";
+import Navbar from "../Navbar";
 import Home from "./Home";
 import Invite from "./Invite";
 import Result from "./Result";
@@ -8,9 +10,11 @@ import Navbar from "../Navbar";
 import firebase from "firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import API from "../../utils/API";
-import Paper from '@material-ui/core/Paper';
+import { Paper, Typography } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
 import './PageBody.css';
-// import keys from "../../keys";
+
+
 
 firebase.initializeApp({
   apiKey: "AIzaSyDYTXe8VuIi0gdZVfI1V1kHpJ2N9Xj23-I",
@@ -39,7 +43,6 @@ class Login extends Component {
     signInOptions: [
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-      firebase.auth.TwitterAuthProvider.PROVIDER_ID,
       firebase.auth.GithubAuthProvider.PROVIDER_ID
     ],
     callbacks: {
@@ -81,36 +84,52 @@ class Login extends Component {
       return (
         <div className="App">
         {this.state.isSignedIn ? (
-          
-        <Router>
-          <div>
-            <Navbar />
-            <Route  exact path="/" component={Home} />
-            <Route exact path="/invite" component={Invite} />
-            <Route exact path="/result" component={Result} />
-          </div>
-        </Router>
-          // <div>
-          // <div>Signed In! </div>
-          // <button className="btn" onClick={()=>firebase.auth().signOut()}> Sign out!</button>
-          // <h1>Welcome {firebase.auth().currentUser.displayName} </h1>
-          // <img alt="user" src={firebase.auth().currentUser.photoURL} />
-          // </div>
-        ) :
-          (<Paper style={styles.Paper}>
-            <div className='logo-box' align='center' bottom-margin='10'>
-              <img src='./eglogo.png' width='200'/>
-              <StyledFirebaseAuth 
-                uiConfig={this.uiConfig}
-                firebaseAuth={firebase.auth()}
-              />
+          <Router>
+            <div>
+              <Navbar />
+              <Route  exact path="/" component={Home} />
+              <Route exact path="/invite" component={Invite} />
+              <Route exact path="/result" component={Result} />
             </div>
-          </Paper>
-         )
-          }
-        </div>
-      )
-    }
+          </Router>
+        ) : (
+          <Grid
+            container
+            spacing={40}
+            direction="column"
+            alignItems="center"
+            justify="center"
+          >
+            <Grid item></Grid>
+            <Grid item></Grid>
+            <Grid item></Grid>
+            <Paper>
+              <Grid item>
+                <Grid
+                  container
+                  alignItems="center"
+                  justify="center"
+                > 
+                <Grid item></Grid>
+                  <Grid item>
+                    <img className="logo"
+                      src='./eglogo.png'
+                      width='200'
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid item>
+                <StyledFirebaseAuth
+                  uiConfig={this.uiConfig}
+                  firebaseAuth={firebase.auth()}
+                />  
+              </Grid>
+            </Paper>
+          </Grid>
+        )}
+      </div>
+    )
   }
   
   export default Login;
