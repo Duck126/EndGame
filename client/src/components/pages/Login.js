@@ -86,10 +86,11 @@ class Login extends Component {
         <Router>
           <div>
             <Navbar />
+            <Back />
             <Route  exact path="/" component={Home} />
             <Route exact path="/invite" component={Invite} />
             <Route exact path="/result" component={Result} />
-            <Back />
+           
           </div>
         </Router>
           // <div>
