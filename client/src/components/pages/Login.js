@@ -7,8 +7,10 @@ import Home from "./Home";
 import Invite from "./Invite";
 import Result from "./Result";
 import API from "../../utils/API";
-import { Paper, Typography } from '@material-ui/core';
-import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import './PageBody.css';
+import Back from "../Back.js";
+// import keys from "../../keys";
 
 
 
@@ -68,12 +70,30 @@ class Login extends Component {
     return (
       <div className="App">
         {this.state.isSignedIn ? (
-          <Router>
-            <div>
-              <Navbar />
-              <Route  exact path="/" component={Home} />
-              <Route exact path="/invite" component={Invite} />
-              <Route exact path="/result" component={Result} />
+          
+        <Router>
+          <div>
+            <Navbar />
+            <Route  exact path="/" component={Home} />
+            <Route exact path="/invite" component={Invite} />
+            <Route exact path="/result" component={Result} />
+            <Back />
+          </div>
+        </Router>
+          // <div>
+          // <div>Signed In! </div>
+          // <button className="btn" onClick={()=>firebase.auth().signOut()}> Sign out!</button>
+          // <h1>Welcome {firebase.auth().currentUser.displayName} </h1>
+          // <img alt="user" src={firebase.auth().currentUser.photoURL} />
+          // </div>
+        ) :
+          (<Paper style={styles.Paper}>
+            <div className='logo-box' align='center' bottom-margin='10'>
+              <img src='./eglogo.png' width='200'/>
+              <StyledFirebaseAuth 
+                uiConfig={this.uiConfig}
+                firebaseAuth={firebase.auth()}
+              />
             </div>
           </Router>
         ) : (

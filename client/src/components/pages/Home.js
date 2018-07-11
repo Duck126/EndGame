@@ -58,16 +58,10 @@ class Home extends Component {
 
         {/* <Paper style={styles.Paper}>
 
-            <Typography className='Title'>
-              <img alt="user" width="50px" margin='5px' src={firebase.auth().currentUser.photoURL}/>
-             <p>  {firebase.auth().currentUser.displayName}</p>
-            </Typography> 
-            <br/>
-            <Map />
-            <Typography variant="display1">
-            </Typography>
-          </Paper>
-
+          <Typography variant='title'>
+            <img alt="user" width="50px" margin='5px' src={firebase.auth().currentUser.photoURL} />
+            Welcome {firebase.auth().currentUser.displayName}! You are signed in.
+          </Typography> 
           <br />
 
           {/* <Map style={styles.Map}/> */}

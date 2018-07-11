@@ -5,6 +5,7 @@ import './PageBody.css';
 import { Paper, Typography, Grid } from "@material-ui/core";
 
 
+
 const styles = {
   Paper: { padding: 20, width: 600, margin: 'auto' },
   Map: { padding: 20, width: 600, margin: 'auto' },
@@ -26,26 +27,51 @@ class Result extends Component {
  
 
 render (){
-  return (
-    <div className='page-body'>
+  if(this.state.center.lat===null && this.state.center.lng===null){
+    return(
+      <div className='page-body'>
+  
+      <Paper style={styles.Paper}>
 
-        <Paper style={styles.Paper}>
-
-          <Typography variant='Title'>
-            <img alt="user" width="50px" margin='5px' src={firebase.auth().currentUser.photoURL} />
-            Welcome {firebase.auth().currentUser.displayName}! You are signed in.
-          </Typography> 
-          <br />
-
-          <Typography variant='display1'>Home</Typography>
-        </Paper>
-
+        <Typography variant='title'>
+          <img alt="user" width="50px" margin='5px' src={firebase.auth().currentUser.photoURL} />
+          Welcome {firebase.auth().currentUser.displayName}! You are signed in.
+        </Typography> 
         <br />
 
-        <Map center={this.state.center} style={styles.Map}/>
+        <Typography variant='display1'>Result</Typography>
+      </Paper>
 
-      </div>
-  )
+      <br />
+
+      <h1 style={styles.Map}>There is nothing to show here</h1>
+
+    </div>
+    ) 
+  } else {
+    return (
+      <div className='page-body'>
+  
+          <Paper style={styles.Paper}>
+  
+            <Typography variant='title'>
+              <img alt="user" width="50px" margin='5px' src={firebase.auth().currentUser.photoURL} />
+              Welcome {firebase.auth().currentUser.displayName}! You are signed in.
+            </Typography> 
+            <br />
+  
+            <Typography variant='display1'>Result</Typography>
+          </Paper>
+  
+          <br />
+          <a target="_blank" href="https://www.google.com/maps/"> Get Directions</a>
+  
+          <Map center={this.state.center} style={styles.Map}/>
+  
+        </div>
+    )
+  }
+  
 }
 }
 

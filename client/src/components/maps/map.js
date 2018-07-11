@@ -171,7 +171,12 @@ searchBoxMaker = () =>{
    ));
 
    if (this.state.center === null) {
-     return (<div>Loading...</div>);
+     return (
+      <div style={{ height: '100vh', width: '100%' }}>
+          <div>Loading...</div>
+      {/* <button onClick={() => console.log(this.state)}>click me</button> */}
+    </div>
+     );
    } else {
       return(
           <div style={{ height: '100vh', width: '100%' }}>

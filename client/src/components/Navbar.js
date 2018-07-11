@@ -122,11 +122,96 @@ class Navbar extends Component {
     const { classes } = this.props;
     const { popperOpen } = this.state;
 
-    return (
-      <div className="menuButtons">
-        <Grid
-          container
-          justify="space-between"
+        {/* <UserMenuButton /> */}
+
+      <Grid
+        container
+        spacing={24}
+        justify="space-between"
+      >
+      <Grid item xs={3}>
+        <Link to="/">
+          <Button
+            variant='text'
+            color='primary'
+            style={{
+              margin:2,
+              alignContent:'center',
+              // justifyContent:'end'
+            }}
+            aria-label="edit"
+            className={window.location.pathname === "/" ? "active nav-link" : "nav-link" }
+          >
+            <span> End Game </span>
+          </ Button>
+        </Link>
+      </Grid>
+        {/* <Grid item xs={6}>
+        </Grid> */}
+
+        {/* <Link to="/">
+          <Button
+            variant="fab"
+            style={{ margin:2, alignContent:'center' }}
+            aria-label="edit"
+            className={window.location.pathname === "/" ? "active nav-link" : "nav-link" }
+          >
+            <HomeIcon style={iconsStyle}/>
+          </Button>
+        </Link> */}
+
+        {/* <Link to="/invite">
+          <Button
+            variant="fab"
+            style={{
+              margin:2,
+              alignContent:'center'
+            }}
+            aria-label="edit"
+            className={window.location.pathname === "/invite" ? "active nav-link" : "nav-link" }
+          >
+            <GroupIcon style={iconsStyle} />
+          </Button>
+        </Link> */}
+
+        {/* <Link to="/result">
+          <Button variant="fab" style={{ margin:2, alignContent:'center' }} aria-label="add" className={window.location.pathname === "/result" ? "active nav-link" : "nav-link"}>
+              <Public style={iconsStyle} />
+          </Button>
+        </Link>   */}
+
+        {/* <Link onClick={()=>this.handleSignOut()} to="/">
+          <Button
+            variant="fab"
+            style={{ margin:2, alignContent:'center' }}
+            aria-label="edit"
+            className={window.location.pathname === "/" ? "active nav-link" : "nav-link" }
+          >
+            <Logout style={iconsStyle}/>
+          </Button>
+        </Link> */}
+
+          {/* <Button variant="fab" style={{margin:2, alignContent:'center' }} aria-label="edit" className="active nav-link">
+            <User style={iconsStyle} src={firebase.auth().currentUser.photoURL}/>
+        </Button> */}
+      <Grid item xs={3}>
+        <Button
+          aria-owns={anchorEl ? 'simple-menu' : null}
+          aria-haspopup="true"
+          onClick={this.handleClick}
+          variant="fab"
+          style={{
+            margin:2,
+            alignContent:'center', 
+            // justifyContent:'end'
+            // justify:"flex-end"
+            flexBasis: "0"
+
+          }}
+          // className="buttonStyle" 
+          // style={buttonStyle}
+          aria-label="edit"
+          className="active nav-link"
         >
           <Grid item xs={3} lg={3}>
             <Grid
