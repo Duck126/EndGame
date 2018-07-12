@@ -99,7 +99,7 @@ class Login extends Component {
         ) :
           (<Paper style={styles.Paper}>
             <div className='logo-box' align='center' bottom-margin='10'>
-              <img src='./eglogo.png' width='200'/>
+              <img src='./logo.png' width='200'/>
               <StyledFirebaseAuth 
                 uiConfig={this.uiConfig}
                 firebaseAuth={firebase.auth()}
