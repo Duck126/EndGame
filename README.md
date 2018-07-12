@@ -21,9 +21,9 @@ In order to use this App on your own personal device. You can go to https://endg
 
 If everything was done correctly, localhost:3000 will be the location of your local version of this App. 
 
-### Developers:
-Navdeep Singh
-Jonathan Duck
-Jen Pennington
-Ivan Saucedo
-Pierce Morrill
+## Developers:
+* Navdeep Singh
+* Jonathan Duck
+* Jen Pennington
+* Ivan Saucedo
+* Pierce Morrill
