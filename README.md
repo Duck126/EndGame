@@ -4,7 +4,7 @@
 EndGame is a directional App with the Aim at helping users find the best location that is equidistant for a group to meet. 
 
 ## Introduction:
-A Full Stack Web Application that uses React,Express, Mongoose, Google maps API and Heroku. You are required to sign-in to use this app, however you are given this App records users' locations and provides a location (calculated center) that is equidistant from all the users. Users's can then use google places to find a place to meet near the calculated center. Users can also use google maps interface to get directions.  
+A Full Stack Web Application that uses React,Express, Mongoose, Google maps API and Heroku. You are required to sign-in to use this app, however you are given this App records users' locations and provides a location (calculated center) that is equidistant from all the users. Users can then use google places to find a place to meet near the calculated center. Users can also use google maps interface to get directions.  
 
 ## Demo:
 ![capture](https://user-images.githubusercontent.com/33271519/42490831-d0f56b74-83d7-11e8-88dc-2dd61ddb85f3.PNG)
