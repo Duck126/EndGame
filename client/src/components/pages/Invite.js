@@ -123,15 +123,11 @@ class Invite extends Component {
         <div className='page-body'>
           <Grid container spacing={24}> 
           <Grid item xs={12}> 
-              <Paper style={styles.Paper}>
-                {/* <button className="btn" onClick={()=>firebase.auth().signOut()}> Sign out!</button> */}
-                  <Typography variant='title'>
-                  <img alt="user" width="50px" margin='5px'src={firebase.auth().currentUser.photoURL} />
-                  Welcome {firebase.auth().currentUser.displayName}! You are signed in.
-                  </Typography> 
+              <Paper style={styles.Paper}> 
+                 
               <br />
 
-            <Typography variant='display1'>Invite</Typography>
+            <Typography variant='display4'>Invite</Typography>
             </Paper>
           </Grid>
           <br />
@@ -162,3 +158,10 @@ class Invite extends Component {
 
 
 export default Invite;
+
+
+/* <button className="btn" onClick={()=>firebase.auth().signOut()}> Sign out!</button> */
+/*<Typography variant='title'>
+<img alt="user" width="50px" margin='10px'src={firebase.auth().currentUser.photoURL} />
+Welcome {firebase.auth().currentUser.displayName}! You are signed in.
+</Typography>*/

@@ -32,13 +32,8 @@ render (){
   
       <Paper style={styles.Paper}>
 
-        <Typography variant='title'>
-          <img alt="user" width="50px" margin='5px' src={firebase.auth().currentUser.photoURL} />
-          Welcome {firebase.auth().currentUser.displayName}! You are signed in.
-        </Typography> 
-        <br />
-
-        <Typography variant='display1'>Result</Typography>
+      <br />
+        <Typography variant='display4'>Result</Typography>
       </Paper>
 
       <br />
@@ -75,3 +70,10 @@ render (){
 
 
 export default Result;
+
+/*        <Typography variant='title'>
+          <img alt="user" width="50px" margin='5px' src={firebase.auth().currentUser.photoURL} />
+          Welcome {firebase.auth().currentUser.displayName}! You are signed in.
+        </Typography> 
+        <br />
+*/
