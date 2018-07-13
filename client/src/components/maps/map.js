@@ -3,6 +3,7 @@ import { withGoogleMap, GoogleMap, Marker,} from 'react-google-maps';
 import firebase from "firebase";
 import API from "../../utils/API";
 import SvgIcon from '@material-ui/core/SvgIcon';
+import MapWithASearchBox from './../maps/searchBoxMaker';
 
 
 const google = window.google;
@@ -61,30 +62,7 @@ class Map extends Component {
 
 
 
-createMarkers = (places) =>{
-  var map;
-  var bounds = new google.maps.LatLngBounds()
-  
-  for (var i = 0, place; places=places[i]; i++){
-    var image = {
-      icon: localCafe,
-      size: new google.maps.Size(71,71),
-      origin: new google.maps.Point(0,0),
-      anchor: new google.maps.Point(17, 34),
-      scaledSize: new google.maps.Size(25, 25),
-    }
-    var marker = new google.maps.Marker({
-      
-      position: place.geometry.location,
-    });
 
-    this.setState({
-      position: marker
-    })
-    bounds.extend(place.geometry.location);
-  }
-  map.fitBounds(bounds)
-}
 
 
   updateLocation = ()=>{
@@ -105,6 +83,7 @@ createMarkers = (places) =>{
         options={{ streetviewcontrol: false, mapTypeControl: true}}
       >
 
+            <MapWithASearchBox/>
       
         <Marker position={this.state.position} />
       </GoogleMap>
@@ -123,8 +102,10 @@ createMarkers = (places) =>{
             <GoogleMapExample
               containerElement={ <div style={{ height: `100%`, width: '100%' }} /> }
               mapElement={ <div style={{ height: '100%' }} /> }
-            />
+            >
+            <MapWithASearchBox/>
             {/* <button onClick={() => console.log(this.state)}>click me</button> */}
+            </GoogleMapExample>
           </div>
       );
     }
