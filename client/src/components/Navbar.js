@@ -1,16 +1,13 @@
 import React,{Component} from "react";
 import { Link } from "react-router-dom";
-import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
 import SvgIcon from '@material-ui/core/SvgIcon';
-import firebase from "firebase";
-import API from "../utils/API";
-// import QuickStart from './material-ui-test/QuickStart';
-// import { Typography } from "@material-ui/core";
-// import UserMenuButton from './material-ui-test/UserMenuButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+import firebase from "firebase";
+import API from "../utils/API";
 
 
 
@@ -26,11 +23,13 @@ const styles = {
     width: 60,
     height: 60,
   },
-};
 
-// const buttonStyle = {
-//   justifyContent: 'end'
-// }
+  img: {
+    width: 50,
+    padding: 0,
+    margin: 'auto'
+  }
+};
 
 function HomeIcon(props) {
   return (
@@ -82,21 +81,6 @@ class Navbar extends Component {
       anchorEl:null,
   }
 
-  // componentDidMount() {
-  //   console.log('component did mount fired');
-  //   console.log(this.state.user);
-  //   navigator.geolocation.getCurrentPosition((location) => {
-  //     console.log(location);
-  //     this.setState({
-  //       center:{
-  //         lat: location.coords.latitude,
-  //       lng: location.coords.longitude,
-  //       }
-  //     });
-  //   });
-  // }
-
-
   handleClick = event => {
       this.setState({anchorEl: event.currentTarget });
   };
@@ -104,7 +88,6 @@ class Navbar extends Component {
   handleClose = () => {
       this.setState({ anchorEl: null });
   };
-
 
   handleSignOut = () =>{
     if(firebase.auth().currentUser){
@@ -121,183 +104,120 @@ class Navbar extends Component {
     return (
       <div
         className="menuButtons"
-        style={{
-          // width:"fit-content",
-          // margin: "auto",
-          // display:"block",
-          // justifyContent: "flex-end"
-          // buttonStyle
-        }}
       >
 
-        {/* <UserMenuButton /> */}
-
-      <Grid
-        container
-        spacing={24}
-        justify="space-between"
-      >
-      <Grid item xs={3}>
-        <Link to="/">
-          <Button
-            variant='headline'
-            color='primary'
-            style={{
-              margin:2,
-              alignContent:'center',
-              // justifyContent:'end'
-            }}
-            aria-label="edit"
-            className={window.location.pathname === "/" ? "active nav-link" : "nav-link" }
-          >
-            <span> End Game </span>
-          </ Button>
-        </Link>
-      </Grid>
-        {/* <Grid item xs={6}>
-        </Grid> */}
-
-        {/* <Link to="/">
-          <Button
-            variant="fab"
-            style={{ margin:2, alignContent:'center' }}
-            aria-label="edit"
-            className={window.location.pathname === "/" ? "active nav-link" : "nav-link" }
-          >
-            <HomeIcon style={iconsStyle}/>
-          </Button>
-        </Link> */}
-
-        {/* <Link to="/invite">
-          <Button
-            variant="fab"
-            style={{
-              margin:2,
-              alignContent:'center'
-            }}
-            aria-label="edit"
-            className={window.location.pathname === "/invite" ? "active nav-link" : "nav-link" }
-          >
-            <GroupIcon style={iconsStyle} />
-          </Button>
-        </Link> */}
-
-        {/* <Link to="/result">
-          <Button variant="fab" style={{ margin:2, alignContent:'center' }} aria-label="add" className={window.location.pathname === "/result" ? "active nav-link" : "nav-link"}>
-              <Public style={iconsStyle} />
-          </Button>
-        </Link>   */}
-
-        {/* <Link onClick={()=>this.handleSignOut()} to="/">
-          <Button
-            variant="fab"
-            style={{ margin:2, alignContent:'center' }}
-            aria-label="edit"
-            className={window.location.pathname === "/" ? "active nav-link" : "nav-link" }
-          >
-            <Logout style={iconsStyle}/>
-          </Button>
-        </Link> */}
-
-          {/* <Button variant="fab" style={{margin:2, alignContent:'center' }} aria-label="edit" className="active nav-link">
-            <User style={iconsStyle} src={firebase.auth().currentUser.photoURL}/>
-        </Button> */}
-      <Grid item xs={3}>
-        <Button
-          aria-owns={anchorEl ? 'simple-menu' : null}
-          aria-haspopup="true"
-          onClick={this.handleClick}
-          variant="fab"
-          style={{
-            margin:2,
-            alignContent:'center', 
-            // justifyContent:'end'
-            // justify:"flex-end"
-            flexBasis: "0"
-
-          }}
-          // className="buttonStyle" 
-          // style={buttonStyle}
-          aria-label="edit"
-          className="active nav-link"
+        <Grid
+          container
+          justify="space-between"
         >
-          <User style={iconsStyle} src={firebase.auth().currentUser.photoURL}/>
-        </Button>
-        <Menu id="simple-menu"
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={this.handleClose}
-        >
-          <MenuItem onClick={this.handleClose}>
-            <Link  to="/">
-              <div
-                variant="fab"
-                style={{
-                  margin:2,
-                  alignContent:'center'
-                }}
-                aria-label="edit"
-                className={window.location.pathname === "/" ? "active nav-link" : "nav-link" }
-              >
-                {/* Profile */}
-                <HomeIcon style={iconsStyle}/>
-              </div>
-            </Link>
-          </MenuItem>
-          <MenuItem onClick={this.handleClose}>
-            <Link  to="/invite">
-              <div
-                variant="fab"
-                style={{
-                  margin:2,
-                  alignContent:'center'
-              }}
-                aria-label="edit"
-                className={window.location.pathname === "/invite" ? "active nav-link" : "nav-link" }
-              >
-                {/* Settings */}
-                <GroupIcon style={iconsStyle} />
-              </div>
-            </Link>
-          </MenuItem>
-          <MenuItem onClick={this.handleClose}>
-            <Link  to="/result">
-              <div
-                variant="fab"
-                style={{
-                  margin:2,
-                  alignContent:'center'
-              }}
-                aria-label="edit"
-                className={window.location.pathname === "/result" ? "active nav-link" : "nav-link" }
-              >
-                {/* Settings */}
-                <GroupIcon style={iconsStyle} />
-              </div>
-            </Link>
-          </MenuItem>
-          <MenuItem onClick={this.handleClose}>
-            <Link onClick={()=>this.handleSignOut()} to="/">
-              <div
-                variant="fab"
-                style={{
-                  margin:2,
-                  alignContent:'center'
-                }}
-                aria-label="edit"
-                className={window.location.pathname === "/" ? "active nav-link" : "nav-link" }
-              >
-                {/* Logout */}
-                <Logout style={iconsStyle}/>
-              </div>
-            </Link>
-          </MenuItem>
-        </Menu>
-      </Grid>
+          <Grid item xs={3} lg={3}>
+            <Grid
+              container
+              alignItems="flex-end"
+              justify="center"
+            >
+              <Grid item xs={6} lg={6}>
+                <Link to="/">
 
-      </Grid>
+                    <span href='/'><img style={styles.img} width='50px' src='./logo.png' /> </span>
+
+                </Link>
+              </Grid>
+            </ Grid>
+          </Grid>
+          
+          <Grid item xs={3} lg={3}>
+            <Grid
+              container
+              justify="flex-end"
+            >
+              <Grid item xs lg={3}>
+                <Button
+                  aria-owns={anchorEl ? 'simple-menu' : null}
+                  aria-haspopup="true"
+                  onClick={this.handleClick}
+                  variant="fab"
+                  style={{
+                    margin:2,
+                    alignContent:'center', 
+                  }}
+                  aria-label="edit"
+                  className="active nav-link"
+                >
+                  <User style={iconsStyle} src={firebase.auth().currentUser.photoURL}/>
+                </Button>
+                <Menu
+                  id="simple-menu"
+                  anchorEl={anchorEl}
+                  open={Boolean(anchorEl)}
+                  onClose={this.handleClose}
+                >
+                <MenuItem onClick={this.handleClose}>
+                  <Link to="/">
+                    <div
+                      variant="fab"
+                      style={{
+                        margin:2,
+                        alignContent:'center'
+                      }}
+                      aria-label="edit"
+                      className={window.location.pathname === "/" ? "active nav-link" : "nav-link" }
+                    >
+                      <HomeIcon style={iconsStyle}/>
+                    </div>
+                  </Link>
+                </MenuItem>
+                <MenuItem onClick={this.handleClose}>
+                  <Link to="/invite">
+                    <div
+                      variant="fab"
+                      style={{
+                        margin:2,
+                        alignContent:'center'
+                    }}
+                      aria-label="edit"
+                      className={window.location.pathname === "/invite" ? "active nav-link" : "nav-link" }
+                    >
+                      <GroupIcon style={iconsStyle} />
+                    </div>
+                  </Link>
+                </MenuItem>
+                <MenuItem onClick={this.handleClose}>
+                  <Link  to="/result">
+                    <div
+                    variant="fab"
+                    style={{
+                      margin:2,
+                      alignContent:'center'
+                    }}
+                    aria-label="edit"
+                    className={window.location.pathname === "/result" ? "active nav-link" : "nav-link" }
+                    >
+                      <Public style={iconsStyle} />
+                    </div>
+                  </Link>
+                </MenuItem>
+                <MenuItem onClick={this.handleClose}>
+                  <Link onClick={()=>this.handleSignOut()} to="/">
+                    <div
+                      variant="fab"
+                      style={{
+                        margin:2,
+                        alignContent:'center'
+                      }}
+                      aria-label="edit"
+                      className={window.location.pathname === "/" ? "active nav-link" : "nav-link" }
+                    >
+                      <Logout style={iconsStyle}/>
+                    </div>
+                  </Link>
+                </MenuItem>
+                </Menu>
+              </Grid>
+            </Grid>
+          </Grid> 
+        </Grid>
       </div> 
-
     )
   }
 }

@@ -55,7 +55,7 @@ render (){
 
         {/* <Paper style={styles.Paper}>
 
-          <Typography variant='Title'>
+          <Typography variant='title'>
             <img alt="user" width="50px" margin='5px' src={firebase.auth().currentUser.photoURL} />
             Welcome {firebase.auth().currentUser.displayName}! You are signed in.
           </Typography> 
