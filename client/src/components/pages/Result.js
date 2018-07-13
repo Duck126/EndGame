@@ -7,13 +7,8 @@ import SearchBox from 'react-google-maps/lib/components/places/SearchBox';
 import { Marker } from "react-google-maps";
 // import SvgIcon from '@material-ui/core/SvgIcon';
 
-const google = window.google;
 
-// function markerIcon(props){
-//   return (
 
-//   );
-// }
 
 const styles = {
   Paper: { padding: 20, width: "100vw", margin: 'auto' },
@@ -37,47 +32,7 @@ class Result extends Component {
   //Bounds: is the area that good maps will search for in that area
   //Viewport: part of geocoding services 
 
-componentDidMount(){
-const refs = {}
 
-this.setState({
-  bounds: null,
-  center: {
-    lat: this.props.location.state ? this.props.location.state.calculatedCenter[0] : null,
-    lng: this.props.location.state ? this.props.location.state.calculatedCenter[1] : null,
-  },
-  markers: [],
-  onMapMounted: ref => {
-    this.setState({
-      bounds: refs.map.getBounds()
-    });
-  },
-  onSearchBoxMounted: ref => {
-    refs.SearchBox = ref; 
-  },
-  onPlacesChanged: () => {
-    const places = refs.SearchBox.getPlaces();
-    const bounds = this.center;
-    places.forEach(place => {
-      if (place.geometry.viewport) {
-        bounds.union(place.geometry.viewport)
-      } else {
-        bounds.extend(place.geometry.location)
-      }
-    });
-    const nextMarkers = places.map(place => ({
-      position: place.geometry.location,
-    }));
-    const nextCenter = (nextMarkers, '0.position', this.state.center)
-    this.setState({
-      markers: nextMarkers,
-      center: nextCenter,
-    });
-  }
-
-}); // setState
-
-} //componentWillMount
 
 render (){
   if(this.state.center.lat===null && this.state.center.lng===null){

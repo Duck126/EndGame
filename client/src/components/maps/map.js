@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
-import { withGoogleMap, GoogleMap, Marker, DirectionsRenderer,} from 'react-google-maps';
+import { withGoogleMap, GoogleMap, Marker,} from 'react-google-maps';
 import firebase from "firebase";
 import API from "../../utils/API";
-import SearchBox from 'react-google-maps/lib/components/places/SearchBox';
+import SvgIcon from '@material-ui/core/SvgIcon';
+
 
 const google = window.google;
+
+function localCafe(props){
+  return (
+    <SvgIcon {...props}>
+      <path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM2 21h18v-2H2v2z"/>
+    </SvgIcon>
+);
+}
+
 class Map extends Component {
   constructor(props) {
     super(props);
@@ -15,38 +25,33 @@ class Map extends Component {
       lng: 0,
       },
       bounds: null,
+      position: {
+        lat: 0,
+        lng: 0,
+      },
       directions: [],
+      marker: [],
       isSignedIn: true,
-      user: firebase.auth().currentUser
+      user: firebase.auth().currentUser,
+      places: []
+
       }
   }
 
-
-  componentDidMount() {
+  
+  componentDidMount(places) {
     console.log('component did mount fired');
     navigator.geolocation.getCurrentPosition((location) => {
-      var center = {
-        lat: location.coords.latitude,
-        lng: location.coords.longitude,
-      }
+      
 
-      //this is where our destination will be implimented
-      var destination= {
-        lat: 30.2672, 
-        lng: -97.7431,
-      }
+      
 
       this.setState({
         center: {
           lat: location.coords.latitude,
           lng: location.coords.longitude,
-        },
-
-        //this is where our destination will be implimented
-        destination: {
-          lat: 30.2672, 
-          lng: -97.7431,
         }
+        
       });
 
       // this.directionMaker(center, destination);
@@ -54,67 +59,33 @@ class Map extends Component {
 
   }//component did mount end
 
-// directionMaker = (center, destination) =>{
-//   const DirectionsService = new google.maps.DirectionsService();
-//   DirectionsService.route({
-//     origin: center,
-//     destination: destination,
-//     travelMode: google.maps.TravelMode.DRIVING,
-//   }, (result, status) => {
-//     if ( status === google.maps.DirectionsStatus.OK) {
-//       this.setState({
-//         directions:  result
-//       })
-//     } else {
-//       console.log(`error fetching directions ${result, status}`)
-//     }
-//   })
-// }
 
 
-// searchBoxMaker = () =>{
-//   const refs = {  }
+createMarkers = (places) =>{
+  var map;
+  var bounds = new google.maps.LatLngBounds()
+  
+  for (var i = 0, place; places=places[i]; i++){
+    var image = {
+      icon: localCafe,
+      size: new google.maps.Size(71,71),
+      origin: new google.maps.Point(0,0),
+      anchor: new google.maps.Point(17, 34),
+      scaledSize: new google.maps.Size(25, 25),
+    }
+    var marker = new google.maps.Marker({
+      
+      position: place.geometry.location,
+    });
 
-//   this.setState({
-//     bounds: null,
-//     onMapMounted: ref => {
-//       refs.map = ref;
-//     },
+    this.setState({
+      position: marker
+    })
+    bounds.extend(place.geometry.location);
+  }
+  map.fitBounds(bounds)
+}
 
-//     onBoundsChanged: () => {
-//       this.setState({
-//         bounds: refs.map.getBounds()
-//       })
-//     },
-//     onSearchBoxMounted: ref => {
-//       refs.searchBox = ref;
-//     },
-//     onPlacesChanged: () => {
-//       const places = refs.searchBox.getPlaces();
-//       const bounds = new google.map.LatLngBounds();
-//       places.forEach(place =>{
-//         if (place.geometry.viewport) {
-//           bounds.union(place.geometry.viewport)
-//         } else {
-//           bounds.extend(place.geometry.location)
-//         }
-//       });
-
-//       const nextMarkers = places.map(place=>({
-//         position: place.geometry.location,
-//       }));
-
-//       this.setState({
-//         markers: nextMarkers,
-//       })
-
-//     }, //onPlacesChanged 
-
-//   })
-
-//   //state isnt being update after we render the places
-
-// }//searchbox
 
   updateLocation = ()=>{
     if(firebase.auth().currentUser){
@@ -134,35 +105,8 @@ class Map extends Component {
         options={{ streetviewcontrol: false, mapTypeControl: true}}
       >
 
-      {/* <SearchBox
-        ref={props.onSearchBoxMounted}
-        bounds={props.center}
-        controlPosition={google.maps.ControlPosition.TOP_LEFT}
-        onPlacesChanged={props.onPlacesChanged}
-      >
-        <input 
-        type="text"
-        placeholder="Search for that Coffee"
-        style={{
-          boxSizing: `border-box`,
-          border: `1px solid transparent`,
-          width: `240px`,
-          height: `32px`,
-          padding: `0 12px`,
-          borderRadius: `3px`,
-          boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
-          fontSize: `14px`,
-          outline: `none`,
-          textOverflow: `ellipses`,
-        }}
-        />
-      </SearchBox>
-
       
-
-        { this.state.directions && <DirectionsRenderer directions={this.state.directions} /> } */}
-
-        <Marker position={this.state.center} />
+        <Marker position={this.state.position} />
       </GoogleMap>
    ));
 

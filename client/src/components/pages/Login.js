@@ -6,13 +6,9 @@ import Navbar from "../Navbar";
 import Home from "./Home";
 import Invite from "./Invite";
 import Result from "./Result";
-import Navbar from "../Navbar";
-import firebase from "firebase";
-import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import API from "../../utils/API";
 import { Paper, Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import './PageBody.css';
 
 
 
@@ -21,22 +17,15 @@ firebase.initializeApp({
   authDomain: "endgame-1529521978924.firebaseapp.com"
 })
 
-const styles = {
-  Paper: { 
-    padding: 20, 
-    width: 300, 
-    margin: 'auto', 
-    paddingTop: 30
 
-
-  },
-}
 
 class Login extends Component {
+
   state = {
     isSignedIn: false,
     user: {}
   }
+
   uiConfig = {
     signInFlow: "popup",
     signInSuccessUrl: window.location,
@@ -71,18 +60,9 @@ class Login extends Component {
       }
   }
 
-  
-
-    // loadUsers = () => {
-    //   API.getUsers()
-    //   .then(res =>
-    //     this.setState({ isSignedIn: true })
-    //   )
-    //   .catch(err => console.log(err));
-    // }
-    render(){
-      return (
-        <div className="App">
+  render(){
+    return (
+      <div className="App">
         {this.state.isSignedIn ? (
           <Router>
             <div>
@@ -95,7 +75,7 @@ class Login extends Component {
         ) : (
           <Grid
             container
-            spacing={40}
+            spacing="40"
             direction="column"
             alignItems="center"
             justify="center"
@@ -110,9 +90,8 @@ class Login extends Component {
                   alignItems="center"
                   justify="center"
                 > 
-                <Grid item></Grid>
                   <Grid item>
-                    <img className="logo"
+                    <img
                       src='./eglogo.png'
                       width='200'
                     />
@@ -131,5 +110,6 @@ class Login extends Component {
       </div>
     )
   }
-  
-  export default Login;
+}
+
+export default Login;

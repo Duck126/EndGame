@@ -1,12 +1,13 @@
 import React,{Component} from "react";
 import { Link } from "react-router-dom";
-import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import Grid from '@material-ui/core/Grid';
-
+import Button from '@material-ui/core/Button';
+import firebase from "firebase";
+import API from "../utils/API";
 
 
 const iconsStyle ={
