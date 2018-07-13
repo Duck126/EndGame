@@ -73,6 +73,7 @@ render (){
         <Map 
         center={this.state.center} 
         style={styles.Map}
+        zoom={14}
         />
 
       </div>

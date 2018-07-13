@@ -101,7 +101,7 @@ createMarkers = (places) =>{
    const GoogleMapExample = withGoogleMap(props => (
       <GoogleMap
         defaultCenter={{ lat: this.props.center.lat, lng: this.props.center.lng }}
-        defaultZoom = { 14 }
+        defaultZoom = { this.props.zoom }
         options={{ streetviewcontrol: false, mapTypeControl: true}}
       >
 

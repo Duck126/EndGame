@@ -22,6 +22,12 @@ const styles = {
     width: 60,
     height: 60,
   },
+
+  img: {
+    width: 50,
+    padding: 0,
+    margin: 'auto'
+  }
 };
 
 // const buttonStyle = {
@@ -138,19 +144,9 @@ class Navbar extends Component {
             >
               <Grid item xs={6} lg={6}>
                 <Link to="/">
-                  <Button
-                    variant='outlined'
-                    // ["text","flat","outlined","contained","raised","fab","extendedFab"].
-                    color='primary'
-                    style={{
-                      margin:2,
-                      alignContent:'center',
-                    }}
-                    aria-label="edit"
-                    className={window.location.pathname === "/" ? "active nav-link" : "nav-link" }
-                    >
-                    <span> End Game </span>
-                  </ Button>
+
+                    <span href='/'><img style={styles.img} width='50px' src='./logo.png' /> </span>
+
                 </Link>
               </Grid>
             </ Grid>
