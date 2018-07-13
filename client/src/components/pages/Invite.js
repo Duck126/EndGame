@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import {Redirect} from "react-router";
-import firebase from "firebase";
+/*import firebase from "firebase";*/
 import FriendsList from "../FriendsList";
 // import InviteButton from '../InviteButton';
-import Result from './Result';
+/*import Result from './Result';*/
 import TimePicker from "../TimePicker";
 import { Paper, Typography, Grid } from "@material-ui/core";
 import "./PageBody.css";
@@ -132,7 +132,8 @@ class Invite extends Component {
                   </Typography>  */}
               <br />
 
-            <Typography variant='display4'>Invite</Typography>
+            <Typography variant='display2'>Pear Up!</Typography>
+            <Typography variant='body1'>Your bushel can have as many pears as you need.</Typography>
             </Paper>
           </Grid>
           <br />

@@ -1,14 +1,14 @@
 //import FriendsList from "../FriendsList";
 import React, {Component} from "react";
 import firebase from "firebase";
-import { Paper, Typography } from '@material-ui/core';
+/*import { Paper, Typography } from '@material-ui/core';*/
 import  Map from "./../maps/map.js";
 import API from "../../utils/API";
 import './PageBody.css';
 
 
 const styles = {
-  Paper: { padding: 20, width: 600, margin: 'auto', maxWidth= '600px' },
+  Paper: { padding: 20, width: 600, margin: 'auto', maxWidth: '600px' },
   Map: { padding: 20, width: 600, margin: 'auto' },
 }
 
@@ -51,9 +51,7 @@ class Home extends Component {
 
 render (){
   return (
-    <div 
-    // className='page-body'
-    >
+    <div className='page-body'>
 
         {/* <Paper style={styles.Paper}>
 

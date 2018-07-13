@@ -24,7 +24,6 @@ class Result extends Component {
       }
   }
 
- 
 
 render (){
   if(this.state.center.lat===null && this.state.center.lng===null){
@@ -39,7 +38,8 @@ render (){
         </Typography>  */}
         <br />
 
-        <Typography variant='display1'>Congrats!!! You found it!</Typography>
+        <Typography variant='display1'>Congratulations!</Typography>
+        <Typography variant='body1'>You found The Bermuda Triangle! Now let's go back and get your friends.</Typography>
         {/* <img
           width="200"
           src="./bermuda-triangle.jpg"
@@ -55,8 +55,7 @@ render (){
     ) 
   } else {
     return (
-      <div 
-      // className='page-body'
+      <div className='page-body'
       >
   
           <Paper style={styles.Paper}>

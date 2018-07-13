@@ -17,7 +17,7 @@ class TimePicker extends Component {
           <form className=/*{classes.container} noValidate*/ 'valueS'>
             <TextField
               id="datetime-local"
-              label="Next appointment"
+              label="When is your group meeting up?"
               type="datetime-local"
               defaultValue="2017-05-24T10:30"
               className=/*{classes.textField}*/ 'valueP'
