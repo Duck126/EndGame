@@ -19,7 +19,15 @@ In order to use this App on your own personal device. You can go to https://endg
 4. Create a new terminal
 5. Within the new terminal, type the command Yarn Start.
 
-If everything was done correctly, localhost:3000 will be the location of your local version of this App. 
+If everything was done correctly, localhost:3000 will be the location of your local version of this App.
+
+## Technologies:
+* React.js
+* Node.js
+* Express.js
+* Mongoose
+* Google Maps API 
+* Material-ui
 
 ## Developers:
 * Navdeep Singh
