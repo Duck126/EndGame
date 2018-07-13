@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 
 
 const styles = {
-    InviteButton: { backgroundColor: '#BDBDBD', width: "86vw" }
+    InviteButton: { backgroundColor: '#BDBDBD', width: "86vw", maxWidth:"560px" }
   };
   
 

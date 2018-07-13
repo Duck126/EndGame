@@ -8,7 +8,7 @@ import Avatars from './Avatars';
 
 
 const styles = {
-    ListItem: { background: '#FF5722', text: 'white', width: "85vw", padding: 5, margin: 3 },
+    ListItem: { background: '#FF5722', text: 'white', width: "85vw", padding: 5, margin: 3, maxWidth:"560px" },
     Checkbox: { color: '#4DB6AC ', fill: '#4DB6AC' }
 }
 

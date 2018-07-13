@@ -11,7 +11,7 @@ import FriendsListItem from './FriendListItem';
 
 
 const styles = {
-  Paper: { padding: 20, width: "95vw", margin: 'auto'  }
+  Paper: { padding: 20, width: "95vw", margin: 'auto', maxWidth:"600px"  }
   
 }
 
