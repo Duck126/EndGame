@@ -152,7 +152,7 @@ class Navbar extends Component {
                   open={Boolean(anchorEl)}
                   onClose={this.handleClose}
                 >
-                <MenuItem onClick={this.handleClose}>
+                {/* <MenuItem onClick={this.handleClose}>
                   <Link to="/">
                     <div
                       variant="fab"
@@ -166,7 +166,7 @@ class Navbar extends Component {
                       <HomeIcon style={iconsStyle}/>
                     </div>
                   </Link>
-                </MenuItem>
+                </MenuItem> */}
                 <MenuItem onClick={this.handleClose}>
                   <Link to="/invite">
                     <div
