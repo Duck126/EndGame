@@ -8,7 +8,7 @@ import './PageBody.css';
 
 
 const styles = {
-  Paper: { padding: 20, width: 600, margin: 'auto' },
+  Paper: { padding: 20, width: 600, margin: 'auto', maxWidth= '600px' },
   Map: { padding: 20, width: 600, margin: 'auto' },
 }
 

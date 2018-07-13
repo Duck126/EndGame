@@ -14,7 +14,7 @@ import getLatLngCenter from "../Algorithm.js";
 // import { get } from "mongoose";
 
 const styles = {
-  Paper: { padding: 20, width: 600, margin: 'auto' },
+  Paper: { padding: 20, width: '95vw', margin: 'auto', maxWidth: '600px' },
 }
 
 class Invite extends Component { 
