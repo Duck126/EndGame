@@ -7,7 +7,7 @@ import Home from "./Home";
 import Invite from "./Invite";
 import Result from "./Result";
 import API from "../../utils/API";
-import { Paper, Typography } from '@material-ui/core';
+import { Paper} from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import './PageBody.css';
 
@@ -56,7 +56,7 @@ class Login extends Component {
           photoURL: firebase.auth().currentUser.photoURL,
           isSignedIn: this.state.isSignedIn,
         })
-        .then(res=> console.log("user created"))
+        .then(res=> res.json)
         .catch(err => console.log(err));
       }
   }

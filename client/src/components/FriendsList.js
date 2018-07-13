@@ -16,11 +16,8 @@ const styles = {
 }
 
 function FriendsList (props){
-  //users = props.liveUsers;
-  // const users = props.liveUsers;
-  //["0"].date
   let users = props.users;
-  console.log(users, "FriendsList Users");
+  // console.log(users, "FriendsList Users");
   
     return (
       <Paper style={styles.Paper}>
@@ -48,11 +45,6 @@ function FriendsList (props){
                         ))}
                       </FormGroup>
                       <InviteButton/>
-                      {/* <button 
-                      type= "submit"
-                      >
-                      Submit
-                      </button> */}
                       </FormControl>
                   </List>
                  </form>
