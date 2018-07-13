@@ -7,7 +7,7 @@ import Home from "./Home";
 import Invite from "./Invite";
 import Result from "./Result";
 import API from "../../utils/API";
-import { Paper, Typography } from '@material-ui/core';
+import { Paper } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 
 
@@ -93,6 +93,7 @@ class Login extends Component {
                   <Grid item>
                     <img
                       src='./eglogo.png'
+                      alt="EndGame Logo"
                       width='200'
                     />
                   </Grid>

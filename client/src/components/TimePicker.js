@@ -10,15 +10,15 @@ const styles = {
 
 class TimePicker extends Component {
 
-  render() { 
+  render(props) { 
     return ( 
-
         <Paper style={styles.Paper}>
           <form className=/*{classes.container} noValidate*/ 'valueS'>
             <TextField
               id="datetime-local"
               label="Next appointment"
               type="datetime-local"
+              onChange={this.props.handleDate}
               defaultValue="2017-05-24T10:30"
               className=/*{classes.textField}*/ 'valueP'
               InputLabelProps={{
@@ -28,7 +28,7 @@ class TimePicker extends Component {
           </form>
           <br />
         </Paper>  
-        
+      
       )   
   }
 }

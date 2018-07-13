@@ -2,13 +2,11 @@ import React, { Component } from "react";
 import {Redirect} from "react-router";
 import firebase from "firebase";
 import FriendsList from "../FriendsList";
-// import InviteButton from '../InviteButton';
-import Result from './Result';
 import TimePicker from "../TimePicker";
-import { Paper, Typography, Grid } from "@material-ui/core";
+import { Grid, Paper, Typography } from "@material-ui/core";
 import "./PageBody.css";
 import API from "../../utils/API";
-//import Result from "./Result";
+
 
 import getLatLngCenter from "../Algorithm.js";
 // import { get } from "mongoose";
@@ -27,6 +25,7 @@ class Invite extends Component {
       checked: false,
       liveUsers: [],
       handleChange: this.handleChange,
+      date: null,
       calculatedCenter: null,
       redirect: false
     };
@@ -34,7 +33,6 @@ class Invite extends Component {
 
   componentWillUpdate(nextProps, nextState){
     console.log("Invite Js line 27", nextState.group);
-    // this.props.groupStateUpdate(this.state.group);
   }
 
   handleGroupSubmit = (e) => {
@@ -47,20 +45,14 @@ class Invite extends Component {
       let coords = [];
       for (let i=0; i < res.data.length; i++){
         let individualCoords = [];
-
         let latInd = parseFloat(res.data[i].Lat.$numberDecimal);
         let lngInd = parseFloat(res.data[i].Lng.$numberDecimal);
         individualCoords.push(latInd);
         individualCoords.push(lngInd);
         coords.push(individualCoords);
-        console.log("Hello Coords",coords);
       }
-      // return(coords)
       const result = getLatLngCenter(coords);
-      console.log("this is the result",result);
-
-      // const secondResult = myNextFunction(result);
-      // const thirdResult = myOtherFunction(result);
+      
       this.setState({
         calculatedCenter: result,
         redirect: true
@@ -71,19 +63,27 @@ class Invite extends Component {
     .catch(err => console.log(err))
    
   }
+
+  handleDate = event => {
+    event.preventDefault();
+    let newdate = JSON.stringify(event.target.value);
+    console.log(newdate);
+    this.setState({
+      date: newdate
+    });
+    
+  }
   
 
   handleChange = event => {
     var tempArr= [];
-    console.log(event.target);
     if(event.target.checked === true){
       tempArr= [...this.state.group, event.target.value];
       this.setState({ 
         group: tempArr,
         checked: true
       });
-      //event.target.checked = true;
-      console.log(tempArr, "You checked one");
+      //console.log(tempArr, "You checked one");
     } else if (event.target.checked === false) {
       tempArr = [...this.state.group];
       let index = tempArr.indexOf(event.target.value);
@@ -92,11 +92,8 @@ class Invite extends Component {
         group: tempArr,
         checked: false
       });
-      //event.target.checked = false;
-      console.log(tempArr, "you unchecked one");
+      //console.log(tempArr, "you unchecked one");
     }
-    //console.log("this is tempARRY",tempArr);
-    //console.log(this.state.group);
   };
 
   componentDidMount() {
@@ -112,19 +109,20 @@ class Invite extends Component {
   } 
     
     render(){
-      let users = this.state.liveUsers;
       const{redirect, calculatedCenter} = this.state
       if (redirect)
           return(<Redirect to={{
             pathname: '/result',
-            state: {calculatedCenter: this.state.calculatedCenter}
+            state: {
+              calculatedCenter: this.state.calculatedCenter,
+              date: this.state.date
+            }
           }} />)
       return (
         <div className='page-body'>
           <Grid container spacing={24}> 
           <Grid item xs={12}> 
               <Paper style={styles.Paper}>
-                {/* <button className="btn" onClick={()=>firebase.auth().signOut()}> Sign out!</button> */}
                   <Typography variant='title'>
                   <img alt="user" width="50px" margin='5px'src={firebase.auth().currentUser.photoURL} />
                   Welcome {firebase.auth().currentUser.displayName}! You are signed in.
@@ -136,7 +134,9 @@ class Invite extends Component {
           </Grid>
           <br />
           <Grid item xs={12}>
-            <TimePicker />    
+            <TimePicker
+              handleDate={this.handleDate}
+            />    
           </Grid>
           <br />
           <Grid item xs={12}>
@@ -148,10 +148,7 @@ class Invite extends Component {
           />
 
           </Grid>
-
            <Grid item xs={12}>
-
-
           </Grid>
 
           </Grid>
