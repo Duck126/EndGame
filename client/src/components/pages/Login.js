@@ -93,8 +93,8 @@ class Login extends Component {
                 > 
                 <Grid item></Grid>
                   <Grid item>
-                    <img className="logo"
-                      src='./eglogo.png'
+                    <img
+                      src='./logo.png'
                       width='200'
                     />
                   </Grid>
