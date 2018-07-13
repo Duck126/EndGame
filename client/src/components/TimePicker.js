@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
+var moment = require('moment');
 
 
 const styles = {
@@ -10,16 +11,17 @@ const styles = {
 
 class TimePicker extends Component {
 
-  render() { 
+  render(props) { 
     return ( 
-
         <Paper style={styles.Paper}>
           <form className=/*{classes.container} noValidate*/ 'valueS'>
             <TextField
               id="datetime-local"
               label="When is your group meeting up?"
               type="datetime-local"
-              defaultValue="2017-05-24T10:30"
+              onChange={this.props.handleDate}
+              defaultValue="2018-07-24T10:30"
+              formatDate={(date) => moment(date).format('DD-MM-YYYY')}
               className=/*{classes.textField}*/ 'valueP'
               InputLabelProps={{
                 shrink: true,
@@ -28,7 +30,7 @@ class TimePicker extends Component {
           </form>
           <br />
         </Paper>  
-        
+      
       )   
   }
 }
