@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {Redirect} from "react-router";
-// import firebase from "firebase";
+/*import firebase from "firebase";*/
 import FriendsList from "../FriendsList";
 import TimePicker from "../TimePicker";
 import { Grid, Paper, Typography } from "@material-ui/core";

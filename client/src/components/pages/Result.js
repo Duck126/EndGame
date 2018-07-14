@@ -41,7 +41,7 @@ class Result extends Component {
     if(this.state.center.lat===null && this.state.center.lng===null){
       return(
         
-        <div className='page-body'>
+        <div>
     
         <Paper style={styles.Paper}>
 
