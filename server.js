@@ -5,9 +5,9 @@ const routes = require("./routes");
 const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 3001;
 
-const cors = require('cors');
-
 const app = express();
+
+
 
 // Define middleware here
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === "production") {
 
 // Define API routes here
 // Add routes, both API and view
-app.use(cors(routes));
+app.use(routes);
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/EndGame");
