@@ -9,6 +9,7 @@
     justify-content: space-around;
     align-content: flex-start;
     overflow: auto;
+    overflow-x: hidden;
   }
 
 .logo {
