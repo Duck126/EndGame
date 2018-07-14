@@ -48,7 +48,7 @@ class Result extends Component {
         <br />
 
         <Typography variant='display1'>Congratulations!</Typography>
-        <Typography variant='body1'>You found The Bermuda Triangle! Now let's go back and get your friends.</Typography>
+        <Typography variant='body1'>You are officially lost! Now let's go back and get your friends.</Typography>
        
       </Paper>
 

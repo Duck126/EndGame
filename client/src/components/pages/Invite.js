@@ -1,24 +1,16 @@
 import React, { Component } from "react";
 import {Redirect} from "react-router";
-<<<<<<< HEAD
-// import firebase from "firebase";
-=======
 /*import firebase from "firebase";*/
->>>>>>> 1fd8babfacddb53d3b8c2bcb3b1dde221544c8a2
 import FriendsList from "../FriendsList";
 import TimePicker from "../TimePicker";
 import { Grid, Paper, Typography } from "@material-ui/core";
 import "./PageBody.css";
 import API from "../../utils/API";
-<<<<<<< HEAD
-import getLatLngCenter from "../Algorithm.js";
-=======
 
 
 import getLatLngCenter from "../Algorithm.js";
 
 // import { get } from "mongoose";
->>>>>>> 1fd8babfacddb53d3b8c2bcb3b1dde221544c8a2
 
 const styles = {
   Paper: { padding: 20, width: "95vw", margin: 'auto', maxWidth:"600px" },
@@ -56,10 +48,6 @@ class Invite extends Component {
         coords.push(individualCoords);
       }
       const result = getLatLngCenter(coords);
-<<<<<<< HEAD
-=======
-      
->>>>>>> 1fd8babfacddb53d3b8c2bcb3b1dde221544c8a2
       this.setState({
         calculatedCenter: result,
         redirect: true
@@ -82,20 +70,14 @@ class Invite extends Component {
 
   handleChange = event => {
     var tempArr= [];
-<<<<<<< HEAD
     // console.log(event.target);
-=======
->>>>>>> 1fd8babfacddb53d3b8c2bcb3b1dde221544c8a2
     if(event.target.checked === true){
       tempArr= [...this.state.group, event.target.value];
       this.setState({ 
         group: tempArr,
         checked: true
       });
-<<<<<<< HEAD
-=======
       //console.log(tempArr, "You checked one");
->>>>>>> 1fd8babfacddb53d3b8c2bcb3b1dde221544c8a2
     } else if (event.target.checked === false) {
       tempArr = [...this.state.group];
       let index = tempArr.indexOf(event.target.value);
@@ -104,10 +86,7 @@ class Invite extends Component {
         group: tempArr,
         checked: false
       });
-<<<<<<< HEAD
-=======
       //console.log(tempArr, "you unchecked one");
->>>>>>> 1fd8babfacddb53d3b8c2bcb3b1dde221544c8a2
     }
   };
 
@@ -138,10 +117,6 @@ class Invite extends Component {
           <Grid container spacing={24}> 
           <Grid item xs={12}> 
               <Paper style={styles.Paper}>
-<<<<<<< HEAD
-=======
-
->>>>>>> 1fd8babfacddb53d3b8c2bcb3b1dde221544c8a2
               <br />
 
               <Typography variant='display2'>Pear Up!</Typography>
