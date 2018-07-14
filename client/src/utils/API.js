@@ -18,5 +18,8 @@ export default {
   },
   groupLocation: function(group){
     return axios.get("/api/users/groupLocation", { params: group })
+  },
+  findPlaces: function(placesData){
+    return axios.get(placesData)
   }
 };

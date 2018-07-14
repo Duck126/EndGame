@@ -31,13 +31,13 @@ const styles = {
   }
 };
 
-// function HomeIcon(props) {
-//   return (
-//     <SvgIcon {...props}>
-//       <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-//     </SvgIcon>
-//   );
-// }
+/*function HomeIcon(props) {
+  return (
+    <SvgIcon {...props}>
+      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+    </SvgIcon>
+  );
+}*/
 
 function GroupIcon(props){
   return (
@@ -119,7 +119,7 @@ class Navbar extends Component {
               <Grid item xs={6} lg={6}>
                 <Link to="/">
 
-                    <span href='/'><img style={styles.img} width='50px' src='./logo.png' /> </span>
+                    <span href='/'><img style={styles.img} width='50px' src='./logo.png' alt='End Game Logo'/> </span>
 
                 </Link>
               </Grid>
