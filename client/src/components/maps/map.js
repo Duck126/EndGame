@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { withGoogleMap, GoogleMap, Marker} from 'react-google-maps';
 import firebase from "firebase";
-import PlacesWithStandaloneSearchBox from "./Search";
-// import API from "../../utils/API";
 
 class Map extends Component {
   constructor(props) {
@@ -67,7 +65,7 @@ class Map extends Component {
    } else {
       return(
           <div style={{ height: '100vh', width: '100%' }}>
-            <PlacesWithStandaloneSearchBox/>
+           
             <GoogleMapExample
               containerElement={ <div style={{ height: `100%`, width: '100%' }} /> }
               mapElement={ <div style={{ height: '100%' }} /> }

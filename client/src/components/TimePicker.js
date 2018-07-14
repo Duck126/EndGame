@@ -21,7 +21,7 @@ class TimePicker extends Component {
               type="datetime-local"
               onChange={this.props.handleDate}
               defaultValue="2018-07-24T10:30"
-              formatDate={(date) => moment(date).format('DD-MM-YYYY')}
+              // formatDate={(date) => moment(date).format('DD-MM-YYYY')}
               className=/*{classes.textField}*/ 'valueP'
               InputLabelProps={{
                 shrink: true,

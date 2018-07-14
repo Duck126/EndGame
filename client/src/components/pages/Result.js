@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import firebase from "firebase";
 import { Paper, Typography } from '@material-ui/core';
-import PlacesWithStandaloneSearchBox from '../maps/Search';
+import moment from "moment";
 import  Map from "./../maps/map.js";
 import './PageBody.css';
 // import CardMedia from '@material-ui/core/CardMedia';
@@ -21,7 +21,7 @@ class Result extends Component {
         lat: this.props.location.state ? this.props.location.state.calculatedCenter[0] : null,
         lng: this.props.location.state ? this.props.location.state.calculatedCenter[1] : null
       },
-      date: this.props.location.state.date,
+      date: this.props.location.state ? this.props.location.state.date : null,
       isSignedIn: true,
       user: firebase.auth().currentUser
       }
@@ -29,8 +29,11 @@ class Result extends Component {
 
 
   componentDidMount(){
-    console.log(this.state.date, "Result Date");
-
+    let currentDate = JSON.parse(this.state.date);
+    let formattedDate = moment(currentDate).format("LLLL");
+    this.setState({
+      date: formattedDate
+    });
   }
 
 
