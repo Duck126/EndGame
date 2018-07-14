@@ -29,14 +29,14 @@ module.exports = {
         .catch(err => res.status(422).json(err));
     },
     updateLocation: function(req, res){
-      console.log("we hit the new update Location",req.body)
+      // console.log("we hit the new update Location",req.body)
       db
         .findOneAndUpdate({"email":req.body.email}, { $set: {"Lat":req.body.Lat,"Lng":req.body.Lng }})
         .then(dbModel => res.send("location updated"))
         .catch(err => res.status(422).json(err));
     },
     groupLocation: function(req,res){
-      console.log(req.query)
+      // console.log(req.query)
       db
         .find({'email':{$in:req.query.group}})
         .then(dbModel => res.json(dbModel))

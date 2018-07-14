@@ -31,13 +31,13 @@ const styles = {
   }
 };
 
-/*function HomeIcon(props) {
-  return (
-    <SvgIcon {...props}>
-      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-    </SvgIcon>
-  );
-}*/
+// function HomeIcon(props) {
+//   return (
+//     <SvgIcon {...props}>
+//       <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+//     </SvgIcon>
+//   );
+// }
 
 function GroupIcon(props){
   return (
@@ -152,21 +152,6 @@ class Navbar extends Component {
                   open={Boolean(anchorEl)}
                   onClose={this.handleClose}
                 >
-                {/* <MenuItem onClick={this.handleClose}>
-                  <Link to="/">
-                    <div
-                      variant="fab"
-                      style={{
-                        margin:2,
-                        alignContent:'center'
-                      }}
-                      aria-label="edit"
-                      className={window.location.pathname === "/" ? "active nav-link" : "nav-link" }
-                    >
-                      <HomeIcon style={iconsStyle}/>
-                    </div>
-                  </Link>
-                </MenuItem> */}
                 <MenuItem onClick={this.handleClose}>
                   <Link to="/invite">
                     <div

@@ -24,9 +24,9 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    console.log('component did mount fired');
+    // console.log('component did mount fired');
     navigator.geolocation.getCurrentPosition((location) => {
-      console.log(location);
+      // console.log(location);
       this.setState({
         center:{
           lat: location.coords.latitude,
@@ -39,9 +39,8 @@ class Home extends Component {
 
   updateLocation = ()=>{
     if(firebase.auth().currentUser){
-        console.log("we are inside if userAuth");
         API.updateLocation({email:firebase.auth().currentUser.email,Lat:this.state.center.lat,Lng: this.state.center.lng })
-        .then(res => console.log("location updated"))
+        .then(res => res.json)
         .catch(err => console.log(err));
       }
 
@@ -49,28 +48,14 @@ class Home extends Component {
 
 render (){
   return (
-    <div className='page-body'>
-
-        {/* <Paper style={styles.Paper}>
-
-          <Typography variant='title'>
-            <img alt="user" width="50px" margin='5px' src={firebase.auth().currentUser.photoURL} />
-            Welcome {firebase.auth().currentUser.displayName}! You are signed in.
-          </Typography> 
-          <br />
-
-          <Typography variant='display1'>Home</Typography>
-        </Paper>
-
-        <br /> */}
-
+    <div>
         <Map 
         center={this.state.center} 
         style={styles.Map}
         zoom={14}
         />
 
-      </div>
+    </div>
   )
 }
 }

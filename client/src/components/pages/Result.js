@@ -4,7 +4,6 @@ import { Paper, Typography } from '@material-ui/core';
 import moment from "moment";
 import  Map from "./../maps/map.js";
 import './PageBody.css';
-// import CardMedia from '@material-ui/core/CardMedia';
 
 
 
@@ -46,26 +45,18 @@ class Result extends Component {
     
         <Paper style={styles.Paper}>
 
-        {/* <Typography variant='title'>
-          <img alt="user" width="50px" margin='5px' src={firebase.auth().currentUser.photoURL} />
-          Welcome {firebase.auth().currentUser.displayName}! You are signed in.
-        </Typography>  */}
+        
         <br />
 
         <Typography variant='display1'>Congratulations!</Typography>
         <Typography variant='body1'>You found The Bermuda Triangle! Now let's go back and get your friends.</Typography>
-        {/* <img
-          width="200"
-          src="./bermuda-triangle.jpg"
-        /> */}
+       
       </Paper>
 
       <br />
       <Map center={{lat: 32.3078, lng:-64.7505 }} zoom={ 10 } style={styles.Map}/>
 
-      {/* <h1 style={styles.Map}>There is nothing to show here</h1> */}
-
-    </div>
+      </div>
     ) 
   } else {
     return (
@@ -77,12 +68,9 @@ class Result extends Component {
             <Typography variant='body2'>{this.state.date}</Typography>
 
           </Paper>
-  
           <br />
-  
           <Map center={this.state.center} style={styles.Map} zoom={14}/>
-  
-        </div>
+      </div>
     )
   }
 }
@@ -91,9 +79,3 @@ class Result extends Component {
 
 export default Result;
 
-/*        <Typography variant='title'>
-          <img alt="user" width="50px" margin='5px' src={firebase.auth().currentUser.photoURL} />
-          Welcome {firebase.auth().currentUser.displayName}! You are signed in.
-        </Typography> 
-        <br />
-*/
